@@ -4,7 +4,8 @@
   "description": "A better Markdown previewer",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/**/test-*"
+    "test": "mocha test/**/test-*",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/noraesae/pen#readme",
   "devDependencies": {
+    "eslint": "^1.4.1",
     "mocha": "^2.3.2"
   }
 }
