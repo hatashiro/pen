@@ -4,7 +4,7 @@
   "description": "A better Markdown previewer",
   "main": "index.js",
   "scripts": {
-    "test": "echo done"
+    "test": "mocha test/**/test-*"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/noraesae/pen/issues"
   },
-  "homepage": "https://github.com/noraesae/pen#readme"
+  "homepage": "https://github.com/noraesae/pen#readme",
+  "devDependencies": {
+    "mocha": "^2.3.2"
+  }
 }
