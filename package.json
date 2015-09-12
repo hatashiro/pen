@@ -1,0 +1,23 @@
+{
+  "name": "pen",
+  "version": "0.1.0",
+  "description": "A better Markdown previewer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo done"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noraesae/pen.git"
+  },
+  "keywords": [
+    "markdown",
+    "previewer"
+  ],
+  "author": "Hyunje Alex Jun <me@noraesae.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noraesae/pen/issues"
+  },
+  "homepage": "https://github.com/noraesae/pen#readme"
+}
