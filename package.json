@@ -23,6 +23,7 @@
   "homepage": "https://github.com/noraesae/pen#readme",
   "devDependencies": {
     "eslint": "^1.4.1",
-    "mocha": "^2.3.2"
+    "mocha": "^2.3.2",
+    "rimraf": "^2.4.3"
   }
 }
