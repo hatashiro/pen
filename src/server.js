@@ -3,6 +3,7 @@
 const fs = require('fs');
 const http = require('http');
 const path = require('path');
+const preview = require('./preview');
 const urllib = require('url');
 
 const DefaultPort = 6060;
@@ -29,22 +30,22 @@ class Server {
   handler(req, res) {
     let url = urllib.parse(req.url);
     let extname = path.extname(url.pathname);
-    let fullPath = path.join(this.rootPath, url.pathname);
 
     if (extname === '.md' || extname === '.markdown') {
-      this.handleAsMarkdown(fullPath, res);
+      this.handleAsMarkdown(url.pathname, res);
     } else {
-      this.handleAsStatic(fullPath, res);
+      this.handleAsStatic(url.pathname, res);
     }
   }
 
   handleAsMarkdown(pathname, res) {
-    // TODO
-    this.handleAsStatic(pathname, res);
+    res.setHeader("Content-Type", "text/html");
+    res.end(preview(pathname));
   }
 
   handleAsStatic(pathname, res) {
-    fs.createReadStream(pathname)
+    let fullPath = path.join(this.rootPath, pathname);
+    fs.createReadStream(fullPath)
       .on('error', err => {
         if (err.code === 'ENOENT') {
           res.statusCode = 404;
