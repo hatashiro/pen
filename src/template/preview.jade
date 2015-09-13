@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title= basename
+    style
+      include ../../node_modules/github-markdown-css/github-markdown.css
+      include style.css
+  body
+    #app
+    script
+      | global.pathname = '#{pathname}';
+      include build.js

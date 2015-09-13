@@ -26,5 +26,9 @@
     "mocha": "^2.3.2",
     "request": "^2.61.0",
     "rimraf": "^2.4.3"
+  },
+  "dependencies": {
+    "github-markdown-css": "^2.0.10",
+    "jade": "^1.11.0"
   }
 }

@@ -28,5 +28,10 @@ module.exports = {
   },
   clean() {
     rimraf.sync(path.join(root, '*'));
+  },
+  previewRegExp(pathname) {
+    let basename = path.basename(pathname);
+    let regexStr = `^<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${basename}<\/title><style>(.|\n)*<\/style><\/head><body><div id="app"><\/div><script>global.pathname = '${pathname}';(.|\n)*<\/script><\/body><\/html>$`;
+    return new RegExp(regexStr);
   }
 };
