@@ -20,6 +20,9 @@ module.exports = {
   createFile(p, initialContent) {
     fs.writeFileSync(filePath(p), initialContent);
   },
+  makeDirectory(p) {
+    fs.mkdirSync(filePath(p));
+  },
   path(p) {
     return path.join(root, p);
   },
