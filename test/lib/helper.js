@@ -10,21 +10,29 @@ function filePath(p) {
   return path.join(root, p);
 }
 
-try {
-  fs.mkdirSync(root);
-} catch (e) {
-  // do nothing
-}
 
-module.exports = {
+const helper = {
   createFile(p, initialContent) {
     fs.writeFileSync(filePath(p), initialContent);
   },
   makeDirectory(p) {
-    fs.mkdirSync(filePath(p));
+    try {
+      fs.mkdirSync(filePath(p));
+    } catch (e) {
+      if (e.code !== 'EEXIST') {
+        throw e;
+      }
+    }
   },
   path(p) {
     return path.join(root, p);
+  },
+  createRootDirectory() {
+    try {
+      fs.mkdirSync(root);
+    } catch (e) {
+      // do nothing
+    }
   },
   clean() {
     rimraf.sync(path.join(root, '*'));
@@ -35,3 +43,8 @@ module.exports = {
     return new RegExp(regexStr);
   }
 };
+
+helper.createRootDirectory();
+helper.clean();
+
+module.exports = helper;
