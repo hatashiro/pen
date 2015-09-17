@@ -5,9 +5,9 @@ const fs = require('fs');
 const helper = require('./lib/helper');
 const http = require('http');
 const MarkdownSocket = require('../src/markdown-socket');
-const MarkdownSocketClient = require('../src/template/script/markdown-socket-client');
+const SocketClient = require('../src/template/script/socket-client');
 
-describe('MarkdownSocketClient', () => {
+describe('SocketClient', () => {
   let server;
   let mdSocket;
 
@@ -27,7 +27,7 @@ describe('MarkdownSocketClient', () => {
   });
 
   it('receives HTML data sent from a Markdown socket server', (done) => {
-    let client = new MarkdownSocketClient({
+    let client = new SocketClient({
       host: 'localhost:1234',
       pathname: '/test.md'
     });
@@ -39,7 +39,7 @@ describe('MarkdownSocketClient', () => {
 
   it('receives the data whenever the file is updated', (done) => {
     let called = 0;
-    let client = new MarkdownSocketClient({
+    let client = new SocketClient({
       host: 'localhost:1234',
       pathname: '/test.md'
     });

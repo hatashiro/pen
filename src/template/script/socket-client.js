@@ -2,7 +2,7 @@
 
 const WebSocket = require('ws');
 
-class MarkdownSocketClient {
+class SocketClient {
   constructor(location) {
     this.host = location.host;
     this.pathname = location.pathname;
@@ -29,4 +29,4 @@ class MarkdownSocketClient {
   }
 }
 
-module.exports = MarkdownSocketClient;
+module.exports = SocketClient;
