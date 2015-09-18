@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test/**/test-*",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "webpack --module-bind 'js=babel' src/template/script/main.js src/template/build.js"
   },
   "repository": {
     "type": "git",
@@ -22,11 +23,14 @@
   },
   "homepage": "https://github.com/noraesae/pen#readme",
   "devDependencies": {
+    "babel-core": "^5.8.24",
+    "babel-loader": "^5.3.2",
     "eslint": "^1.4.1",
     "jsdom": "^6.5.0",
     "mocha": "^2.3.2",
     "request": "^2.61.0",
-    "rimraf": "^2.4.3"
+    "rimraf": "^2.4.3",
+    "webpack": "^1.12.2"
   },
   "dependencies": {
     "github-markdown-css": "^2.0.10",
