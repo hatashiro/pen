@@ -1,5 +1,5 @@
 {
-  "name": "pen",
+  "name": "pen.md",
   "version": "0.1.0",
   "description": "A better Markdown previewer",
   "main": "index.js",
