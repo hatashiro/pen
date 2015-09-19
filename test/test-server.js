@@ -4,6 +4,7 @@ const assert = require('assert');
 const helper = require('./lib/helper');
 const request = require('request');
 const Server = require('../src/server');
+const WebSocket = require('ws');
 
 const TestPort = 1234;
 
@@ -81,6 +82,18 @@ describe('Server', () => {
       assert.equal(res.statusCode, 200);
       assert.equal(res.headers['content-type'], 'text/html');
       assert.ok(helper.previewRegExp('/test.md').exec(body));
+      done();
+    });
+  });
+
+  it('receives a websocket connection', (done) => {
+    server = new Server(helper.path('server-root'));
+    server.listen(TestPort);
+
+    let url = `ws://localhost:${TestPort}/test.md`;
+    let ws = new WebSocket(url);
+    ws.on('message', data => {
+      assert.equal(data, '<h1 id="hello">hello</h1>\n');
       done();
     });
   });

@@ -5,11 +5,15 @@ const http = require('http');
 const path = require('path');
 const preview = require('./preview');
 const urllib = require('url');
+const MarkdownSocket = require('./markdown-socket');
 
 class Server {
   constructor(rootPath) {
     this.rootPath = rootPath;
     this._server = http.createServer(this.handler.bind(this));
+
+    this._ws = new MarkdownSocket(this.rootPath);
+    this._ws.listenTo(this._server);
   }
 
   listen(port, cb) {
@@ -17,6 +21,7 @@ class Server {
   }
 
   close(cb) {
+    this._ws.close();
     this._server.close(cb);
   }
 
