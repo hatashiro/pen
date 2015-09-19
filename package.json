@@ -37,7 +37,7 @@
     "jade": "^1.11.0",
     "marked": "^0.3.5",
     "open": "0.0.5",
-    "ws": "^0.8.0",
+    "ws": "noraesae/ws#temporary",
     "yargs": "^3.25.0"
   },
   "preferGlobal": true,
