@@ -39,5 +39,9 @@
     "open": "0.0.5",
     "ws": "^0.8.0",
     "yargs": "^3.25.0"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "pen": "./bin/pen"
   }
 }
