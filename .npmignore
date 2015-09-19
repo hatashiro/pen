@@ -5,3 +5,4 @@ node_modules
 /.gitignore
 /.travis.yml
 /test/temp
+/resource
