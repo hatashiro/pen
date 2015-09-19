@@ -6,20 +6,13 @@ const path = require('path');
 const preview = require('./preview');
 const urllib = require('url');
 
-const DefaultPort = 6060;
-
 class Server {
-  static get DefaultPort() {
-    return DefaultPort;
-  }
-
   constructor(rootPath) {
     this.rootPath = rootPath;
     this._server = http.createServer(this.handler.bind(this));
   }
 
-  listen(customPort, cb) {
-    let port = customPort ? customPort : DefaultPort;
+  listen(port, cb) {
     this._server.listen(port, cb);
   }
 

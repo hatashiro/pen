@@ -5,6 +5,8 @@ const helper = require('./lib/helper');
 const request = require('request');
 const Server = require('../src/server');
 
+const TestPort = 1234;
+
 describe('Server', () => {
   let server;
 
@@ -22,9 +24,9 @@ describe('Server', () => {
 
   it('creates a file server on a given path', (done) => {
     server = new Server(helper.path('server-root'));
-    server.listen();
+    server.listen(TestPort);
 
-    let url = `http://localhost:${Server.DefaultPort}/test1.txt`;
+    let url = `http://localhost:${TestPort}/test1.txt`;
     request.get(url, (err, res, body) => {
       if (err) {
         done(err);
@@ -34,7 +36,7 @@ describe('Server', () => {
       assert.equal(res.statusCode, 200);
       assert.equal(body, 'hello');
 
-      let url = `http://localhost:${Server.DefaultPort}/test2.txt`;
+      let url = `http://localhost:${TestPort}/test2.txt`;
       request.get(url, (err, res, body) => {
         if (err) {
           done(err);
@@ -48,28 +50,11 @@ describe('Server', () => {
     });
   });
 
-  it('creates a server with a custom port', (done) => {
-    server = new Server(helper.path('server-root'));
-    server.listen(1234);
-
-    let url = `http://localhost:1234/test1.txt`;
-    request.get(url, (err, res, body) => {
-      if (err) {
-        done(err);
-        return;
-      }
-
-      assert.equal(res.statusCode, 200);
-      assert.equal(body, 'hello');
-      done();
-    });
-  });
-
   it('fails when there is no file', (done) => {
     server = new Server(helper.path('server-root'));
-    server.listen();
+    server.listen(TestPort);
 
-    let url = `http://localhost:${Server.DefaultPort}/test3.txt`;
+    let url = `http://localhost:${TestPort}/test3.txt`;
     request.get(url, (err, res, body) => {
       if (err) {
         done(err);
@@ -84,9 +69,9 @@ describe('Server', () => {
 
   it('shows a preview page for Markdown files', (done) => {
     server = new Server(helper.path('server-root'));
-    server.listen();
+    server.listen(TestPort);
 
-    let url = `http://localhost:${Server.DefaultPort}/test.md`;
+    let url = `http://localhost:${TestPort}/test.md`;
     request.get(url, (err, res, body) => {
       if (err) {
         done(err);
