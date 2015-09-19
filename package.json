@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha test/**/test-*",
     "lint": "eslint .",
-    "build": "webpack --module-bind 'js=babel' src/template/script/main.js src/template/build.js"
+    "build": "webpack --module-bind 'js=babel' src/template/script/main.js src/template/build.js",
+    "release": "npm build && npm publish"
   },
   "repository": {
     "type": "git",
