@@ -2,3 +2,15 @@
   max-width: 790px;
   margin: 30px auto;
 }
+
+/* checkbox */
+input[type='checkbox'] {
+  vertical-align: middle;
+  margin: 0 0.5em 0.25em 0;
+}
+li:has(> input[type='checkbox']) {
+  list-style-type:none;
+}
+li>input[type='checkbox'] {
+  margin: 0 0.7em 0.25em -1.6em;
+}
