@@ -56,11 +56,11 @@ describe('MarkdownSocket', () => {
         fs.writeFile(helper.path('md-root/test.md'), '```js\nvar a=10;\n```');
         break;
       case 1:
-        assert.equal(data, '<pre><code class="lang-js">var a=10;\n</code></pre>\n');
+        assert.equal(data, '<pre><code class="language-js">var a=10;\n</code></pre>\n');
         fs.writeFile(helper.path('md-root/test.md'), '* nested\n  * nnested\n    * nnnested');
         break;
       case 2:
-        assert.equal(data, '<ul>\n<li>nested<ul>\n<li>nnested<ul>\n<li>nnnested</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n');
+        assert.equal(data, '<ul>\n<li>nested\n<ul>\n<li>nnested\n<ul>\n<li>nnnested</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n');
         done();
         break;
       }

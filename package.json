@@ -36,7 +36,10 @@
   "dependencies": {
     "github-markdown-css": "^2.0.10",
     "jade": "^1.11.0",
-    "marked": "^0.3.5",
+    "markdown-it": "^4.4.0",
+    "markdown-it-anchor": "^2.3.0",
+    "markdown-it-checkbox": "^1.1.0",
+    "markdown-it-emoji": "^1.1.0",
     "open": "0.0.5",
     "ws": "noraesae/ws#temporary",
     "yargs": "^3.25.0"
