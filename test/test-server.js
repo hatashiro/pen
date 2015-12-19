@@ -16,6 +16,7 @@ describe('Server', () => {
     helper.createFile('server-root/test1.txt', 'hello');
     helper.createFile('server-root/test2.txt', 'world');
     helper.createFile('server-root/test.md', '# hello');
+    helper.createFile('server-root/test2.md', '# hello');
   });
 
   afterEach(() => {
@@ -64,6 +65,23 @@ describe('Server', () => {
 
       assert.equal(res.statusCode, 404);
       assert.equal(body, 'Not found');
+      done();
+    });
+  });
+
+  it('shows a list of Markdown files for directories', (done) => {
+    server = new Server(helper.path('server-root'));
+    server.listen(TestPort);
+
+    let url = `http://localhost:${TestPort}/`;
+    request.get(url, (err, res, body) => {
+      if (err) {
+        done(err);
+        return;
+      }
+
+      assert.equal(res.statusCode, 200);
+      assert.equal(body, "<a href='test.md'>test.md</a> <a href='test2.md'>test2.md</a>");
       done();
     });
   });

@@ -43,16 +43,25 @@ class Server {
 
   handleAsStatic(pathname, res) {
     let fullPath = path.join(this.rootPath, pathname);
-    fs.createReadStream(fullPath)
-      .on('error', err => {
-        if (err.code === 'ENOENT') {
-          res.statusCode = 404;
-          res.end('Not found');
-        } else {
-          throw err;
-        }
-      })
-      .pipe(res);
+
+    try {
+      let stat = fs.statSync(fullPath);
+      if (stat.isDirectory()) {
+        let fileList = fs.readdirSync(fullPath).filter(f => f.endsWith('.md'));
+        res.setHeader("Content-Type", "text/html");
+        res.end(fileList.map(f => `<a href='${f}'>${f}</a>`).join(' '));
+      } else {
+        fs.createReadStream(fullPath)
+          .pipe(res);
+      }
+    } catch (err) {
+      if (err.code === 'ENOENT') {
+        res.statusCode = 404;
+        res.end('Not found');
+      } else {
+        throw err;
+      }
+    }
   }
 }
 
