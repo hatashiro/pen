@@ -1,35 +1,28 @@
 'use strict';
 
+const React = require('react');
+const renderHTML = require('react-render-html');
 const SocketClient = require('./socket-client');
 
-class HTMLRenderer {
-  constructor(location) {
-    this._client = new SocketClient(location);
-    this._client.onData(this.handleData.bind(this));
-
-    this._updateCallback = null;
-  }
-
+let HTMLRenderer = React.createClass({
+  getInitialState() {
+    return {html: ''};
+  },
+  componentDidMount() {
+    this.socketClient = new SocketClient(this.props.location);
+    this.socketClient.onData(this.handleData);
+  },
+  componentDidUpdate() {
+    if (this.props.onUpdate) {
+      this.props.onUpdate();
+    }
+  },
   handleData(data) {
-    if (this.rootElement) {
-      this.rootElement.innerHTML = data;
-    }
-    this.triggerOnUpdate();
+    this.setState({html: data});
+  },
+  render() {
+    return React.createElement('div', null, renderHTML(this.state.html));
   }
+});
 
-  renderTo(rootElement) {
-    this.rootElement = rootElement;
-  }
-
-  onUpdate(cb) {
-    this._updateCallback = cb;
-  }
-
-  triggerOnUpdate() {
-    if (this._updateCallback) {
-      this._updateCallback();
-    }
-  }
-}
-
-module.exports = HTMLRenderer;
+module.exports = React.createFactory(HTMLRenderer);

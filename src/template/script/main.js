@@ -1,6 +1,7 @@
 'use strict';
 
 const HTMLRenderer = require('./html-renderer');
+const ReactDOM = require('react-dom');
 
-let renderer = new HTMLRenderer(global.location);
-renderer.renderTo(global.document.getElementById('app'));
+let app = global.document.getElementById('app');
+ReactDOM.render(HTMLRenderer({location: global.window.location}), app);

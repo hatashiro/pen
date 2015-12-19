@@ -5,8 +5,13 @@ const fs = require('fs');
 const helper = require('./lib/helper');
 const HTMLRenderer = require('../src/template/script/html-renderer');
 const http = require('http');
-const jsdom = require('jsdom');
 const MarkdownSocket = require('../src/markdown-socket');
+const ReactTestUtils = require('react-addons-test-utils');
+
+function getRenderedHTML(rendered) {
+  let div = ReactTestUtils.findRenderedDOMComponentWithTag(rendered, 'div');
+  return div.innerHTML.replace(/ data-react[-\w]+="[^"]+"/g, '');
+}
 
 describe('HTMLRenderer', () => {
   let server;
@@ -28,55 +33,47 @@ describe('HTMLRenderer', () => {
   });
 
   it('renders HTML parsed from Markdown with using Virtual DOM', (done) => {
-    jsdom.env(
-      "<div id='app'></div>",
-      [],
-      (err, win) => {
-        let renderer = new HTMLRenderer({
-          host: 'localhost:1234',
-          pathname: '/test.md'
-        });
-        let app = win.document.getElementById('app');
-        renderer.renderTo(app);
-        renderer.onUpdate(() => {
-          assert.equal(app.innerHTML, '<h1 id="hello">hello</h1>\n');
-          done();
-        });
+    let rendered;
+    let renderer = HTMLRenderer({
+      location: {
+        host: 'localhost:1234',
+        pathname: '/test.md'
+      },
+      onUpdate() {
+        assert.equal(getRenderedHTML(rendered), '<h1 id="hello"><span>hello</span></h1><span>\n</span>');
+        done();
       }
-    );
+    });
+    rendered = ReactTestUtils.renderIntoDocument(renderer);
   });
 
   it('re-renders whenever the file is updated', (done) => {
-    jsdom.env(
-      "<div id='app'></div>",
-      [],
-      (err, win) => {
-        let called = 0;
-        let renderer = new HTMLRenderer({
-          host: 'localhost:1234',
-          pathname: '/test.md'
-        });
-        let app = win.document.getElementById('app');
-        renderer.renderTo(app);
-        renderer.onUpdate(() => {
-          let html = app.innerHTML;
-          switch (called) {
-          case 0:
-            assert.equal(html, '<h1 id="hello">hello</h1>\n');
-            fs.writeFile(helper.path('md-root/test.md'), '```js\nvar a=10;\n```');
-            break;
-          case 1:
-            assert.equal(html, '<pre><code class="language-js">var a=10;\n</code></pre>\n');
-            fs.writeFile(helper.path('md-root/test.md'), '* nested\n  * nnested\n    * nnnested');
-            break;
-          case 2:
-            assert.equal(html, '<ul>\n<li>nested\n<ul>\n<li>nnested\n<ul>\n<li>nnnested</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n');
-            done();
-            break;
-          }
-          called += 1;
-        });
+    let called = 0;
+    let rendered;
+    let renderer = HTMLRenderer({
+      location: {
+        host: 'localhost:1234',
+        pathname: '/test.md'
+      },
+      onUpdate() {
+        let html = getRenderedHTML(rendered);
+        switch (called) {
+        case 0:
+          assert.equal(html, '<h1 id="hello"><span>hello</span></h1><span>\n</span>');
+          fs.writeFile(helper.path('md-root/test.md'), '```js\nvar a=10;\n```');
+          break;
+        case 1:
+          assert.equal(html, '<pre><code class="language-js"><span>var a=10;\n</span></code></pre><span>\n</span>');
+          fs.writeFile(helper.path('md-root/test.md'), '* nested\n  * nnested\n    * nnnested');
+          break;
+        case 2:
+          assert.equal(html, '<ul><span>\n</span><li><span>nested\n</span><ul><span>\n</span><li><span>nnested\n</span><ul><span>\n</span><li><span>nnnested</span></li><span>\n</span></ul><span>\n</span></li><span>\n</span></ul><span>\n</span></li><span>\n</span></ul><span>\n</span>');
+          done();
+          break;
+        }
+        called += 1;
       }
-    );
+    });
+    rendered = ReactTestUtils.renderIntoDocument(renderer);
   });
 });
