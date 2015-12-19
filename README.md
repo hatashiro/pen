@@ -1,6 +1,6 @@
 <img src='media/logo.png' width='200'>
 
-# [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square)](LICENSE) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)]() [![travis](https://img.shields.io/travis/noraesae/pen.svg?style=flat-square)](https://travis-ci.org/noraesae/pen)
+# [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square)](LICENSE) [![npm](https://img.shields.io/npm/v/pen.md.svg?style=flat-square)](https://www.npmjs.com/package/pen.md) [![travis](https://img.shields.io/travis/noraesae/pen.svg?style=flat-square)](https://travis-ci.org/noraesae/pen)
 
 > We need a better Markdown previewer.
 
@@ -16,11 +16,24 @@ Using `pen` is super simple, we don't need to install any special editor or
 launch any GUI application. `pen` is just a tidy command-line tool. You can use
 your favourite editor and browser. No manual refresh is even needed.
 
-I personally use `pen` everyday, and I hope you love it too. :black_nib:
+Also, the previewer renders the content using [React](https://facebook.github.io/react/).
+It means that it will not re-render entire DOM when the document is updated.
+This is a huge advantage because images or other media won't be reloaded for
+the DOM update.
+
+I personally love to use `pen`, and I hope you love it too. :black_nib:
 
 ## Demo
 
+Here is a short demo showing how `pen` works.
+
 ![demo](https://cloud.githubusercontent.com/assets/1013641/9977359/21b79f66-5f3f-11e5-860a-cf19b2287009.gif)
+
+The following demo shows `pen` incrementally updates only modified part using
+[React](https://facebook.github.io/react/) and
+its [Virtual DOM](https://facebook.github.io/react/docs/glossary.html).
+
+![virtual-dom](https://cloud.githubusercontent.com/assets/1013641/11914823/896591ba-a6cd-11e5-94ee-05e3ab50413b.gif)
 
 ## Requirement
 
@@ -53,7 +66,7 @@ To stop the server, enter `^C`.
 For the further details of the `pen` command, please enter `pen -h` or `pen
 --help`.
 
-## Development
+## Contribution
 
 I welcome every contribution on `pen`. You may start from forking and cloning
 this repo.
@@ -62,7 +75,7 @@ this repo.
 git clone git@github.com:your_username/pen.git
 ```
 
-To build frontend scripts using [Webpack](http://webpack.github.io):
+To build frontend scripts:
 ```
 npm run build
 ```
@@ -76,10 +89,6 @@ To test with [Mocha](http://mochajs.org)
 ```
 npm test
 ```
-
-## TODOs
-
-- [ ] Incremental update using virtual DOM or React
 
 ## License
 
