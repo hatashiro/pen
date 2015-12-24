@@ -1,6 +1,6 @@
 'use strict';
 
-const open = require('open');
+const open = require('opn');
 const Server = require('./src/server');
 
 const DefaultPort = 6060;
