@@ -26,6 +26,14 @@ class MarkdownSocket {
 
     let watcher = new MarkdownWatcher(path.join(this.rootPath, pathname));
     watcher.onData(data => wsClient.send(data));
+    watcher.onError(err => {
+      if (err.code === 'ENOENT') {
+        // if there is no file, ignore and send 'no file'
+        wsClient.send('Not found');
+        return;
+      }
+      throw err;
+    });
 
     wsClient.on('close', () => {
       watcher.stop();

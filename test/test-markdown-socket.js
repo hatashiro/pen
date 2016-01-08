@@ -67,4 +67,12 @@ describe('MarkdownSocket', () => {
       called += 1;
     });
   });
+
+  it('ignores when there is no file for the path', (done) => {
+    let client = new WebSocket('ws://localhost:1234/no-file.md');
+    client.on('message', data => {
+      assert.equal(data, 'Not found');
+      done();
+    });
+  });
 });
