@@ -47,6 +47,12 @@ class Server {
     try {
       let stat = fs.statSync(fullPath);
       if (stat.isDirectory()) {
+        if (!pathname.endsWith('/')) {
+          res.writeHead(302, {'Location': pathname + '/'});
+          res.end();
+          return;
+        }
+
         let fileList = fs.readdirSync(fullPath).filter(f => f.endsWith('.md'));
         res.setHeader("Content-Type", "text/html");
         res.end(fileList.map(f => `<a href='${f}'>${f}</a>`).join(' '));
