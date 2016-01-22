@@ -1,10 +1,8 @@
-<img src='media/logo.png' width='200'>
-
-# [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat-square)](LICENSE) [![npm](https://img.shields.io/npm/v/pen.md.svg?style=flat-square)](https://www.npmjs.com/package/pen.md) [![travis](https://img.shields.io/travis/noraesae/pen.svg?style=flat-square)](https://travis-ci.org/noraesae/pen)
+<h1><img src='media/logo.png' alt='logo' width='200'/></h1>
 
 > We need a better Markdown previewer.
 
-## What is `pen`?
+[![travis](https://travis-ci.org/noraesae/pen.svg)](https://travis-ci.org/noraesae/pen)
 
 `pen` is a Markdown previewer written in JavaScript, aiming to *just work*.
 
@@ -25,7 +23,7 @@ I personally love to use `pen`, and I hope you love it too. :black_nib:
 
 ## Demo
 
-Here is a short demo showing how `pen` works.
+Here is a short demo showing how awesome `pen` is.
 
 ![demo](https://cloud.githubusercontent.com/assets/1013641/9977359/21b79f66-5f3f-11e5-860a-cf19b2287009.gif)
 
