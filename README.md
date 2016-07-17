@@ -43,7 +43,7 @@ on earlier versions.
 Using [npm](http://npmjs.com):
 
 ```
-npm install -g pen.md
+npm install -g @noraesae/pen
 ```
 
 ## Usage

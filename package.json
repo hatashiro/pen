@@ -1,5 +1,5 @@
 {
-  "name": "pen.md",
+  "name": "@noraesae/pen",
   "version": "0.1.3",
   "description": "A better Markdown previewer",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "npm run lint && mocha --require test/setup.js test/**/test-*",
     "lint": "eslint .",
     "build": "NODE_ENV=production browserify src/template/script/main.js -t [ babelify --presets [ es2015 ] ] | uglifyjs > src/template/build.js",
-    "release": "npm run build && npm publish"
+    "release": "npm run build && npm publish --access=public"
   },
   "repository": {
     "type": "git",
