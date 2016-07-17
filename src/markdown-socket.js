@@ -2,46 +2,53 @@
 
 const MarkdownWatcher = require('./markdown-watcher');
 const path = require('path');
-const urllib = require('url');
-const WebSocketServer = require('ws').Server;
+const WebSocketServer = require('websocket').server;
 
 class MarkdownSocket {
   constructor(rootPath) {
     this.rootPath = rootPath;
     this._server = null;
+    this.pathname = null;
   }
 
   listenTo(httpServer) {
-    this._server = new WebSocketServer({server: httpServer});
-    this._server.on('connection', this.onConnection.bind(this));
+    this._server = new WebSocketServer();
+    this._server.mount({httpServer: httpServer});
+    this._server.on('request', this.onRequest.bind(this));
+    this._server.on('connect', this.onConnect.bind(this));
   }
 
-  onConnection(wsClient) {
-    let pathname = urllib.parse(wsClient.upgradeReq.url).pathname;
-    let extname = path.extname(pathname);
+  onRequest(request) {
+    const extname = path.extname(request.resource);
 
     if (extname !== '.md' && extname !== '.markdown') {
+      request.reject();
       return;
     }
 
-    let watcher = new MarkdownWatcher(path.join(this.rootPath, pathname));
-    watcher.onData(data => wsClient.send(data));
+    this.pathname = request.resource;
+    request.accept(null, request.origin);
+  }
+
+  onConnect(connection) {
+    let watcher = new MarkdownWatcher(path.join(this.rootPath, this.pathname));
+    watcher.onData(data => connection.send(data));
     watcher.onError(err => {
       if (err.code === 'ENOENT') {
         // if there is no file, ignore and send 'no file'
-        wsClient.send('Not found');
+        connection.send('Not found');
         return;
       }
       throw err;
     });
 
-    wsClient.on('close', () => {
+    connection.on('close', () => {
       watcher.stop();
     });
   }
 
   close() {
-    this._server.close();
+    this._server.closeAllConnections();
   }
 }
 

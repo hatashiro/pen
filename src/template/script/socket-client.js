@@ -1,6 +1,6 @@
 'use strict';
 
-const WebSocket = require('ws');
+const WebSocket = require('websocket').w3cwebsocket;
 
 class SocketClient {
   constructor(location) {

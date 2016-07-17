@@ -46,7 +46,7 @@
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-render-html": "0.1.4",
-    "ws": "noraesae/ws#temporary",
+    "websocket": "^1.0.23",
     "yargs": "^4.8.0"
   },
   "preferGlobal": true,
