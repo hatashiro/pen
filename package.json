@@ -45,7 +45,7 @@
     "pug": "^2.0.0-beta3",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "react-render-html": "0.1.4",
+    "react-render-html": "0.1.5",
     "websocket": "^1.0.23",
     "yargs": "^4.8.0"
   },
