@@ -4,9 +4,10 @@
   "description": "A better Markdown previewer",
   "main": "index.js",
   "scripts": {
-    "test": "yarn lint && yarn build && mocha --require test/setup.js test/**/test-*",
+    "test": "yarn lint && yarn build && yarn mocha",
     "lint": "eslint .",
     "build": "NODE_ENV=production browserify src/template/script/main.js -t [ babelify --presets [ es2015 ] ] | uglifyjs > src/template/build.js",
+    "mocha": "mocha --require test/setup.js test/**/test-*",
     "release": "yarn build && yarn publish --access=public"
   },
   "repository": {
