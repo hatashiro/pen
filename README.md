@@ -40,6 +40,12 @@ on earlier versions.
 
 ## Install
 
+Using [Yarn](https://yarnpkg.com):
+
+```
+yarn global add @noraesae/pen
+```
+
 Using [npm](http://npmjs.com):
 
 ```
@@ -75,17 +81,17 @@ git clone git@github.com:your_username/pen.git
 
 To build frontend scripts:
 ```
-npm run build
+yarn build
 ```
 
 To lint with [ESLint](http://eslint.org):
 ```
-npm run lint
+yarn lint
 ```
 
 To test with [Mocha](http://mochajs.org)
 ```
-npm test
+yarn test
 ```
 
 ## License
