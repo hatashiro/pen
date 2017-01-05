@@ -40,6 +40,8 @@ describe('Watcher', () => {
   });
 
   it('send the data again when the file is updated', (done) => {
+    const callback = err => { if (err) { done(err); } };
+
     let called = 0;
     watcher = new Watcher(helper.path('watcher-temp'));
     watcher
@@ -47,11 +49,11 @@ describe('Watcher', () => {
         switch (called) {
         case 0:
           assert.equal(data.toString(), 'hello');
-          fs.writeFile(helper.path('watcher-temp'), 'world');
+          fs.writeFile(helper.path('watcher-temp'), 'world', callback);
           break;
         case 1:
           assert.equal(data.toString(), 'world');
-          fs.writeFile(helper.path('watcher-temp'), 'pen!');
+          fs.writeFile(helper.path('watcher-temp'), 'pen!', callback);
           break;
         case 2:
           assert.equal(data.toString(), 'pen!');

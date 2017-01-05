@@ -1,6 +1,7 @@
 language: node_js
 node_js:
-- '4'
-script:
-- npm run build
-- npm test
+- 4
+- 6
+- node
+
+cache: yarn

@@ -38,6 +38,8 @@ describe('SocketClient', () => {
   });
 
   it('receives the data whenever the file is updated', (done) => {
+    const callback = err => { if (err) { done(err); } };
+
     let called = 0;
     let client = new SocketClient({
       host: 'localhost:1234',
@@ -47,11 +49,11 @@ describe('SocketClient', () => {
       switch (called) {
       case 0:
         assert.equal(html, '<h1 id="hello">hello</h1>\n');
-        fs.writeFile(helper.path('md-root/test.md'), '```js\nvar a=10;\n```');
+        fs.writeFile(helper.path('md-root/test.md'), '```js\nvar a=10;\n```', callback);
         break;
       case 1:
         assert.equal(html, '<pre><code class="language-js">var a=10;\n</code></pre>\n');
-        fs.writeFile(helper.path('md-root/test.md'), '* nested\n  * nnested\n    * nnnested');
+        fs.writeFile(helper.path('md-root/test.md'), '* nested\n  * nnested\n    * nnnested', callback);
         break;
       case 2:
         assert.equal(html, '<ul>\n<li>nested\n<ul>\n<li>nnested\n<ul>\n<li>nnnested</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n');

@@ -48,6 +48,8 @@ describe('HTMLRenderer', () => {
   });
 
   it('re-renders whenever the file is updated', (done) => {
+    const callback = err => { if (err) { done(err); } };
+
     let called = 0;
     let rendered;
     let renderer = HTMLRenderer({
@@ -60,11 +62,11 @@ describe('HTMLRenderer', () => {
         switch (called) {
         case 0:
           assert.equal(html, '<h1 id="hello"><!-- react-text: 3 -->hello<!-- /react-text --></h1><!-- react-text: 4 -->\n<!-- /react-text -->');
-          fs.writeFile(helper.path('md-root/test.md'), '```js\nvar a=10;\n```');
+          fs.writeFile(helper.path('md-root/test.md'), '```js\nvar a=10;\n```', callback);
           break;
         case 1:
           assert.equal(html, '<pre><code class="language-js"><!-- react-text: 7 -->var a=10;\n<!-- /react-text --></code></pre><!-- react-text: 4 -->\n<!-- /react-text -->');
-          fs.writeFile(helper.path('md-root/test.md'), '* nested\n  * nnested\n    * nnnested');
+          fs.writeFile(helper.path('md-root/test.md'), '* nested\n  * nnested\n    * nnnested', callback);
           break;
         case 2:
           assert.equal(html, '<ul><!-- react-text: 9 -->\n<!-- /react-text --><li><!-- react-text: 11 -->nested\n<!-- /react-text --><ul><!-- react-text: 13 -->\n<!-- /react-text --><li><!-- react-text: 15 -->nnested\n<!-- /react-text --><ul><!-- react-text: 17 -->\n<!-- /react-text --><li><!-- react-text: 19 -->nnnested<!-- /react-text --></li><!-- react-text: 20 -->\n<!-- /react-text --></ul><!-- react-text: 21 -->\n<!-- /react-text --></li><!-- react-text: 22 -->\n<!-- /react-text --></ul><!-- react-text: 23 -->\n<!-- /react-text --></li><!-- react-text: 24 -->\n<!-- /react-text --></ul><!-- react-text: 4 -->\n<!-- /react-text -->');

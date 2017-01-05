@@ -54,17 +54,19 @@ describe('MarkdownSocket', () => {
   });
 
   it('sends parsed HTML data again when the file is updated', (done) => {
+    const callback = err => { if (err) { done(err); } };
+
     let called = 0;
     let client = new WebSocket('ws://localhost:1234/test.md');
     client.onmessage = message => {
       switch (called) {
       case 0:
         assert.equal(message.data, '<h1 id="hello">hello</h1>\n');
-        fs.writeFile(helper.path('md-root/test.md'), '```js\nvar a=10;\n```');
+        fs.writeFile(helper.path('md-root/test.md'), '```js\nvar a=10;\n```', callback);
         break;
       case 1:
         assert.equal(message.data, '<pre><code class="language-js">var a=10;\n</code></pre>\n');
-        fs.writeFile(helper.path('md-root/test.md'), '* nested\n  * nnested\n    * nnnested');
+        fs.writeFile(helper.path('md-root/test.md'), '* nested\n  * nnested\n    * nnnested', callback);
         break;
       case 2:
         assert.equal(message.data, '<ul>\n<li>nested\n<ul>\n<li>nnested\n<ul>\n<li>nnnested</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n');

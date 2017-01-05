@@ -4,10 +4,11 @@
   "description": "A better Markdown previewer",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && npm run build && mocha --require test/setup.js test/**/test-*",
+    "test": "yarn lint && yarn build && yarn mocha",
     "lint": "eslint .",
     "build": "NODE_ENV=production browserify src/template/script/main.js -t [ babelify --presets [ es2015 ] ] | uglifyjs > src/template/build.js",
-    "release": "npm run build && npm publish --access=public"
+    "mocha": "mocha --require test/setup.js test/**/test-*",
+    "release": "yarn build && yarn publish --access=public"
   },
   "repository": {
     "type": "git",
@@ -37,7 +38,7 @@
   },
   "dependencies": {
     "github-markdown-css": "^2.4.0",
-    "markdown-it": "^7.0.1",
+    "markdown-it": "^8.2.2",
     "markdown-it-anchor": "^2.5.0",
     "markdown-it-checkbox": "^1.1.0",
     "markdown-it-emoji": "^1.2.0",
@@ -47,7 +48,7 @@
     "react-dom": "^15.3.1",
     "react-render-html": "^0.1.6",
     "websocket": "^1.0.23",
-    "yargs": "^5.0.0"
+    "yargs": "^6.6.0"
   },
   "preferGlobal": true,
   "bin": {
