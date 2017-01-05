@@ -3,7 +3,3 @@ node_js:
 - '4'
 
 cache: yarn
-
-script:
-- yarn build
-- yarn test
