@@ -1,6 +1,6 @@
 {
   "name": "@noraesae/pen",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "description": "A better Markdown previewer",
   "main": "index.js",
   "scripts": {
@@ -18,12 +18,12 @@
     "markdown",
     "previewer"
   ],
-  "author": "Hyunje Alex Jun <me@noraesae.net>",
+  "author": "Hyunje Jun <me@noraesae.net>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/noraesae/pen/issues"
   },
-  "homepage": "https://github.com/noraesae/pen#readme",
+  "homepage": "https://github.com/noraesae/pen",
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
