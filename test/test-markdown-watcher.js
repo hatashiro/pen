@@ -17,7 +17,7 @@ describe('MarkdownWatcher', () => {
     helper.clean();
   });
 
-  it('reads a Markdown file and send parsed HTML data', (done) => {
+  it('reads a Markdown file and send parsed HTML data', done => {
     watcher = new MarkdownWatcher(helper.path('watcher-temp.md'));
     watcher
       .onData(data => {
@@ -27,7 +27,7 @@ describe('MarkdownWatcher', () => {
       .onError(done);
   });
 
-  it('send parsed HTML data again when the file is updated', (done) => {
+  it('send parsed HTML data again when the file is updated', done => {
     const callback = err => { if (err) { done(err); } };
 
     let called = 0;

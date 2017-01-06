@@ -26,7 +26,7 @@ describe('SocketClient', () => {
     server.close(done);
   });
 
-  it('receives HTML data sent from a Markdown socket server', (done) => {
+  it('receives HTML data sent from a Markdown socket server', done => {
     let client = new SocketClient({
       host: 'localhost:1234',
       pathname: '/test.md'
@@ -37,7 +37,7 @@ describe('SocketClient', () => {
     });
   });
 
-  it('receives the data whenever the file is updated', (done) => {
+  it('receives the data whenever the file is updated', done => {
     const callback = err => { if (err) { done(err); } };
 
     let called = 0;

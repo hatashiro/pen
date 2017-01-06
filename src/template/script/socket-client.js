@@ -7,7 +7,7 @@ class SocketClient {
     this.host = location.host;
     this.pathname = location.pathname;
 
-    let url = `ws://${this.host}${this.pathname}`;
+    const url = `ws://${this.host}${this.pathname}`;
 
     this._socket = new WebSocket(url);
     this._socket.onmessage = event => {

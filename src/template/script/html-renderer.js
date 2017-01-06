@@ -4,7 +4,7 @@ const React = require('react');
 const renderHTML = require('react-render-html');
 const SocketClient = require('./socket-client');
 
-let HTMLRenderer = React.createClass({
+const HTMLRenderer = React.createClass({
   getInitialState() {
     return {html: ''};
   },

@@ -24,7 +24,7 @@ describe('Server', () => {
     helper.clean();
   });
 
-  it('creates a file server on a given path', (done) => {
+  it('creates a file server on a given path', done => {
     server = new Server(helper.path('server-root'));
     server.listen(TestPort);
 
@@ -52,7 +52,7 @@ describe('Server', () => {
     });
   });
 
-  it('fails when there is no file', (done) => {
+  it('fails when there is no file', done => {
     server = new Server(helper.path('server-root'));
     server.listen(TestPort);
 
@@ -69,7 +69,7 @@ describe('Server', () => {
     });
   });
 
-  it('shows a list of Markdown files for directories', (done) => {
+  it('shows a list of Markdown files for directories', done => {
     server = new Server(helper.path('server-root'));
     server.listen(TestPort);
 
@@ -86,7 +86,7 @@ describe('Server', () => {
     });
   });
 
-  it('shows a preview page for Markdown files', (done) => {
+  it('shows a preview page for Markdown files', done => {
     server = new Server(helper.path('server-root'));
     server.listen(TestPort);
 
@@ -104,7 +104,7 @@ describe('Server', () => {
     });
   });
 
-  it('receives a websocket connection', (done) => {
+  it('receives a websocket connection', done => {
     server = new Server(helper.path('server-root'));
     server.listen(TestPort);
 

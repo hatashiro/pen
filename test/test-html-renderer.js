@@ -9,7 +9,7 @@ const MarkdownSocket = require('../src/markdown-socket');
 const ReactTestUtils = require('react-addons-test-utils');
 
 function getRenderedHTML(rendered) {
-  let div = ReactTestUtils.findRenderedDOMComponentWithTag(rendered, 'div');
+  const div = ReactTestUtils.findRenderedDOMComponentWithTag(rendered, 'div');
   return div.innerHTML.replace(/ data-react[-\w]+="[^"]+"/g, '');
 }
 
