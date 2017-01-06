@@ -1606,7 +1606,7 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-github-markdown-css@^2.4.0:
+github-markdown-css@^2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/github-markdown-css/-/github-markdown-css-2.4.1.tgz#b4736d84eea8367a03b3248cf546dda3e8dc55e3"
 
@@ -3060,7 +3060,7 @@ react-attr-converter@0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/react-attr-converter/-/react-attr-converter-0.1.1.tgz#0591f5a1146e3ab9c8e4d303d6cf966f5e6d7608"
 
-react-dom@^15.3.1:
+react-dom@^15.4.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.1.tgz#d54c913261aaedb17adc20410d029dcc18a1344a"
   dependencies:
@@ -3077,7 +3077,7 @@ react-render-html@^0.1.6:
     react-attr-converter "0.1.1"
     uppercamelcase "^1.1.0"
 
-react@^15.3.1:
+react@^15.4.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.4.1.tgz#498e918602677a3983cd0fd206dfe700389a0dd6"
   dependencies:
