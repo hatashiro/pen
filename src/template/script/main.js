@@ -1,5 +1,9 @@
 'use strict';
 
+// Non-js dependencies
+require('github-markdown-css/github-markdown.css');
+require('./style.css');
+
 const HTMLRenderer = require('./html-renderer');
 const ReactDOM = require('react-dom');
 
