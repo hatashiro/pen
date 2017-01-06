@@ -31,3 +31,4 @@ node_modules
 
 # Built files
 /src/template/build.js
+/src/template/build.css
