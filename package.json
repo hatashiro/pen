@@ -42,7 +42,8 @@
     "request": "^2.74.0",
     "rimraf": "^2.5.4",
     "style-loader": "^0.13.1",
-    "webpack": "^1.14.0"
+    "webpack": "^1.14.0",
+    "webpack-fail-plugin": "^1.0.5"
   },
   "dependencies": {
     "markdown-it": "^8.2.2",

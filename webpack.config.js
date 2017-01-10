@@ -2,12 +2,15 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const failPlugin = require('webpack-fail-plugin');
 
 
 // Always enabled plugins
 let plugins = [
   // Extract CSS files to the 'bundle.css'.
-  new ExtractTextPlugin('build.css')
+  new ExtractTextPlugin('build.css'),
+  // This plugin should be always required. See https://github.com/webpack/webpack/issues/708
+  failPlugin,
 ];
 
 // Production only plugins
