@@ -1,9 +1,7 @@
-'use strict';
-
-const assert = require('assert');
-const fs = require('fs');
-const helper = require('./lib/helper');
-const Watcher = require('../src/watcher');
+import assert from 'assert';
+import fs from 'fs';
+import helper from './lib/helper';
+import Watcher from '../src/watcher';
 
 describe('Watcher', () => {
   let watcher;

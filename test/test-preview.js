@@ -1,8 +1,6 @@
-'use strict';
-
-const assert = require('assert');
-const helper = require('./lib/helper');
-const preview = require('../src/preview');
+import assert from 'assert';
+import helper from './lib/helper';
+import preview from '../src/preview';
 
 describe('preview', () => {
   it('returns a preview page for a given Markdown path', () => {

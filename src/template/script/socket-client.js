@@ -1,8 +1,6 @@
-'use strict';
+import { w3cwebsocket as WebSocket } from 'websocket';
 
-const WebSocket = require('websocket').w3cwebsocket;
-
-class SocketClient {
+export default class SocketClient {
   constructor(location) {
     this.host = location.host;
     this.pathname = location.pathname;
@@ -28,5 +26,3 @@ class SocketClient {
     }
   }
 }
-
-module.exports = SocketClient;

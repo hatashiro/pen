@@ -1,10 +1,8 @@
-'use strict';
-
-const assert = require('assert');
-const helper = require('./lib/helper');
-const path = require('path');
-const request = require('request');
-const spawn = require('child_process').spawn;
+import assert from 'assert';
+import helper from './lib/helper';
+import path from 'path';
+import request from 'request';
+import { spawn } from 'child_process';
 
 describe('index', () => {
   let proc;

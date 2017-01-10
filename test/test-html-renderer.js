@@ -1,12 +1,10 @@
-'use strict';
-
-const assert = require('assert');
-const fs = require('fs');
-const helper = require('./lib/helper');
-const HTMLRenderer = require('../src/template/script/html-renderer');
-const http = require('http');
-const MarkdownSocket = require('../src/markdown-socket');
-const ReactTestUtils = require('react-addons-test-utils');
+import assert from 'assert';
+import fs from 'fs';
+import helper from './lib/helper';
+import HTMLRenderer from '../src/template/script/html-renderer';
+import http from 'http';
+import MarkdownSocket from '../src/markdown-socket';
+import ReactTestUtils from 'react-addons-test-utils';
 
 function getRenderedHTML(rendered) {
   const div = ReactTestUtils.findRenderedDOMComponentWithTag(rendered, 'div');

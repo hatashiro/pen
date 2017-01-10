@@ -1,8 +1,6 @@
-'use strict';
-
-const React = require('react');
-const renderHTML = require('react-render-html');
-const SocketClient = require('./socket-client');
+import React from 'react';
+import renderHTML from 'react-render-html';
+import SocketClient from './socket-client';
 
 const HTMLRenderer = React.createClass({
   getInitialState() {
@@ -25,4 +23,4 @@ const HTMLRenderer = React.createClass({
   }
 });
 
-module.exports = React.createFactory(HTMLRenderer);
+export default React.createFactory(HTMLRenderer);

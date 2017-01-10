@@ -1,6 +1,4 @@
-'use strict';
-
-const jsdom = require('jsdom');
+import jsdom from 'jsdom';
 
 // test setup for browser mocking
 global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');

@@ -1,11 +1,9 @@
-'use strict';
-
 // Non-js dependencies
-require('github-markdown-css/github-markdown.css');
-require('./style.css');
+import 'github-markdown-css/github-markdown.css';
+import './style.css';
 
-const HTMLRenderer = require('./html-renderer');
-const ReactDOM = require('react-dom');
+import ReactDOM from 'react-dom';
+import HTMLRenderer from './html-renderer';
 
 const app = global.document.getElementById('app');
 ReactDOM.render(HTMLRenderer({location: global.window.location}), app);

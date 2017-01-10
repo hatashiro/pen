@@ -1,9 +1,7 @@
-'use strict';
-
-const assert = require('assert');
-const fs = require('fs');
-const helper = require('./lib/helper');
-const MarkdownWatcher = require('../src/markdown-watcher');
+import assert from 'assert';
+import fs from 'fs';
+import helper from './lib/helper';
+import MarkdownWatcher from '../src/markdown-watcher';
 
 describe('MarkdownWatcher', () => {
   let watcher;

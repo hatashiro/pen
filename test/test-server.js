@@ -1,10 +1,8 @@
-'use strict';
-
-const assert = require('assert');
-const helper = require('./lib/helper');
-const request = require('request');
-const Server = require('../src/server');
-const WebSocket = require('websocket').w3cwebsocket;
+import assert from 'assert';
+import helper from './lib/helper';
+import request from 'request';
+import Server from '../src/server';
+import { w3cwebsocket as WebSocket } from 'websocket';
 
 const TestPort = 1234;
 
