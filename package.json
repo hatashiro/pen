@@ -7,7 +7,7 @@
     "test": "yarn lint && yarn build && yarn mocha",
     "lint": "eslint .",
     "build": "NODE_ENV=production webpack --optimize-occurrence-order",
-    "mocha": "mocha --require test/setup.js test/**/test-*",
+    "mocha": "mocha --require babel-register --require test/setup.js test/**/test-*",
     "release": "yarn build && yarn publish --access=public"
   },
   "repository": {
@@ -28,6 +28,7 @@
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-preset-latest": "^6.16.0",
+    "babel-register": "^6.18.0",
     "css-loader": "^0.26.1",
     "eslint": "^3.3.1",
     "extract-text-webpack-plugin": "^1.0.1",
