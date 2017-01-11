@@ -1,9 +1,7 @@
-'use strict';
-
-const assert = require('assert');
-const fs = require('fs');
-const helper = require('./lib/helper');
-const MarkdownWatcher = require('../src/markdown-watcher');
+import assert from 'assert';
+import fs from 'fs';
+import helper from './lib/helper';
+import MarkdownWatcher from '../src/markdown-watcher';
 
 describe('MarkdownWatcher', () => {
   let watcher;
@@ -17,7 +15,7 @@ describe('MarkdownWatcher', () => {
     helper.clean();
   });
 
-  it('reads a Markdown file and send parsed HTML data', (done) => {
+  it('reads a Markdown file and send parsed HTML data', done => {
     watcher = new MarkdownWatcher(helper.path('watcher-temp.md'));
     watcher
       .onData(data => {
@@ -27,7 +25,7 @@ describe('MarkdownWatcher', () => {
       .onError(done);
   });
 
-  it('send parsed HTML data again when the file is updated', (done) => {
+  it('send parsed HTML data again when the file is updated', done => {
     const callback = err => { if (err) { done(err); } };
 
     let called = 0;

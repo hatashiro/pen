@@ -7,8 +7,7 @@ const previewTemplate = path.join(__dirname, 'template/preview.pug');
 
 function preview(pathname) {
   return pug.renderFile(previewTemplate, {
-    basename: path.basename(pathname),
-    pathname: pathname
+    basename: path.basename(pathname)
   });
 }
 

@@ -1,11 +1,9 @@
-'use strict';
-
-const assert = require('assert');
-const fs = require('fs');
-const helper = require('./lib/helper');
-const http = require('http');
-const MarkdownSocket = require('../src/markdown-socket');
-const SocketClient = require('../src/template/script/socket-client');
+import assert from 'assert';
+import fs from 'fs';
+import helper from './lib/helper';
+import http from 'http';
+import MarkdownSocket from '../src/markdown-socket';
+import SocketClient from '../src/template/script/socket-client';
 
 describe('SocketClient', () => {
   let server;
@@ -26,7 +24,7 @@ describe('SocketClient', () => {
     server.close(done);
   });
 
-  it('receives HTML data sent from a Markdown socket server', (done) => {
+  it('receives HTML data sent from a Markdown socket server', done => {
     let client = new SocketClient({
       host: 'localhost:1234',
       pathname: '/test.md'
@@ -37,7 +35,7 @@ describe('SocketClient', () => {
     });
   });
 
-  it('receives the data whenever the file is updated', (done) => {
+  it('receives the data whenever the file is updated', done => {
     const callback = err => { if (err) { done(err); } };
 
     let called = 0;

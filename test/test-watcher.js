@@ -1,9 +1,7 @@
-'use strict';
-
-const assert = require('assert');
-const fs = require('fs');
-const helper = require('./lib/helper');
-const Watcher = require('../src/watcher');
+import assert from 'assert';
+import fs from 'fs';
+import helper from './lib/helper';
+import Watcher from '../src/watcher';
 
 describe('Watcher', () => {
   let watcher;
@@ -17,7 +15,7 @@ describe('Watcher', () => {
     helper.clean();
   });
 
-  it('reads a file', (done) => {
+  it('reads a file', done => {
     watcher = new Watcher(helper.path('watcher-temp'));
     watcher
       .onData(data => {
@@ -27,7 +25,7 @@ describe('Watcher', () => {
       .onError(done);
   });
 
-  it('cannot read a wrong file', (done) => {
+  it('cannot read a wrong file', done => {
     let watcher = new Watcher(helper.path('watcher-wrong-temp'));
     watcher
       .onData(() => {
@@ -39,7 +37,7 @@ describe('Watcher', () => {
       });
   });
 
-  it('send the data again when the file is updated', (done) => {
+  it('send the data again when the file is updated', done => {
     const callback = err => { if (err) { done(err); } };
 
     let called = 0;

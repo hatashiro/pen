@@ -1,13 +1,11 @@
-'use strict';
+import { w3cwebsocket as WebSocket } from 'websocket';
 
-const WebSocket = require('websocket').w3cwebsocket;
-
-class SocketClient {
+export default class SocketClient {
   constructor(location) {
     this.host = location.host;
     this.pathname = location.pathname;
 
-    let url = `ws://${this.host}${this.pathname}`;
+    const url = `ws://${this.host}${this.pathname}`;
 
     this._socket = new WebSocket(url);
     this._socket.onmessage = event => {
@@ -28,5 +26,3 @@ class SocketClient {
     }
   }
 }
-
-module.exports = SocketClient;

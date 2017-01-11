@@ -1,10 +1,8 @@
-'use strict';
-
-const assert = require('assert');
-const helper = require('./lib/helper');
-const request = require('request');
-const Server = require('../src/server');
-const WebSocket = require('websocket').w3cwebsocket;
+import assert from 'assert';
+import helper from './lib/helper';
+import request from 'request';
+import Server from '../src/server';
+import { w3cwebsocket as WebSocket } from 'websocket';
 
 const TestPort = 1234;
 
@@ -24,7 +22,7 @@ describe('Server', () => {
     helper.clean();
   });
 
-  it('creates a file server on a given path', (done) => {
+  it('creates a file server on a given path', done => {
     server = new Server(helper.path('server-root'));
     server.listen(TestPort);
 
@@ -52,7 +50,7 @@ describe('Server', () => {
     });
   });
 
-  it('fails when there is no file', (done) => {
+  it('fails when there is no file', done => {
     server = new Server(helper.path('server-root'));
     server.listen(TestPort);
 
@@ -69,7 +67,7 @@ describe('Server', () => {
     });
   });
 
-  it('shows a list of Markdown files for directories', (done) => {
+  it('shows a list of Markdown files for directories', done => {
     server = new Server(helper.path('server-root'));
     server.listen(TestPort);
 
@@ -86,7 +84,7 @@ describe('Server', () => {
     });
   });
 
-  it('shows a preview page for Markdown files', (done) => {
+  it('shows a preview page for Markdown files', done => {
     server = new Server(helper.path('server-root'));
     server.listen(TestPort);
 
@@ -104,7 +102,7 @@ describe('Server', () => {
     });
   });
 
-  it('receives a websocket connection', (done) => {
+  it('receives a websocket connection', done => {
     server = new Server(helper.path('server-root'));
     server.listen(TestPort);
 

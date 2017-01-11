@@ -1,15 +1,14 @@
-'use strict';
-
-const assert = require('assert');
-const fs = require('fs');
-const helper = require('./lib/helper');
-const HTMLRenderer = require('../src/template/script/html-renderer');
-const http = require('http');
-const MarkdownSocket = require('../src/markdown-socket');
-const ReactTestUtils = require('react-addons-test-utils');
+import assert from 'assert';
+import fs from 'fs';
+import helper from './lib/helper';
+import HTMLRenderer from '../src/template/script/html-renderer';
+import http from 'http';
+import MarkdownSocket from '../src/markdown-socket';
+import React from 'react';
+import ReactTestUtils from 'react-addons-test-utils';
 
 function getRenderedHTML(rendered) {
-  let div = ReactTestUtils.findRenderedDOMComponentWithTag(rendered, 'div');
+  const div = ReactTestUtils.findRenderedDOMComponentWithTag(rendered, 'div');
   return div.innerHTML.replace(/ data-react[-\w]+="[^"]+"/g, '');
 }
 
@@ -34,7 +33,7 @@ describe('HTMLRenderer', () => {
 
   it('renders HTML parsed from Markdown with using Virtual DOM', (done) => {
     let rendered;
-    let renderer = HTMLRenderer({
+    let renderer = React.createElement(HTMLRenderer, {
       location: {
         host: 'localhost:1234',
         pathname: '/test.md'
@@ -52,7 +51,7 @@ describe('HTMLRenderer', () => {
 
     let called = 0;
     let rendered;
-    let renderer = HTMLRenderer({
+    let renderer = React.createElement(HTMLRenderer, {
       location: {
         host: 'localhost:1234',
         pathname: '/test.md'

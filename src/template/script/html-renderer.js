@@ -1,28 +1,32 @@
-'use strict';
+import React from 'react';
+import renderHTML from 'react-render-html';
+import SocketClient from './socket-client';
 
-const React = require('react');
-const renderHTML = require('react-render-html');
-const SocketClient = require('./socket-client');
-
-let HTMLRenderer = React.createClass({
-  getInitialState() {
-    return {html: ''};
-  },
+class HTMLRenderer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { html: '' };
+  }
   componentDidMount() {
     this.socketClient = new SocketClient(this.props.location);
-    this.socketClient.onData(this.handleData);
-  },
+    this.socketClient.onData(html => this.setState({ html }));
+  }
   componentDidUpdate() {
     if (this.props.onUpdate) {
       this.props.onUpdate();
     }
-  },
-  handleData(data) {
-    this.setState({html: data});
-  },
+  }
   render() {
     return React.createElement('div', null, renderHTML(this.state.html));
   }
-});
+}
 
-module.exports = React.createFactory(HTMLRenderer);
+HTMLRenderer.propTypes = {
+  location: React.PropTypes.shape({
+    host: React.PropTypes.string.isRequired,
+    pathname: React.PropTypes.string.isRequired,
+  }).isRequired,
+  onUpdate: React.PropTypes.func,
+};
+
+export default HTMLRenderer;

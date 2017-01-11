@@ -26,8 +26,8 @@ class Server {
   }
 
   handler(req, res) {
-    let url = urllib.parse(req.url);
-    let extname = path.extname(url.pathname);
+    const url = urllib.parse(req.url);
+    const extname = path.extname(url.pathname);
 
     if (extname === '.md' || extname === '.markdown') {
       this.handleAsMarkdown(url.pathname, res);
@@ -42,10 +42,10 @@ class Server {
   }
 
   handleAsStatic(pathname, res) {
-    let fullPath = path.join(this.rootPath, pathname);
+    const fullPath = path.join(this.rootPath, pathname);
 
     try {
-      let stat = fs.statSync(fullPath);
+      const stat = fs.statSync(fullPath);
       if (stat.isDirectory()) {
         if (!pathname.endsWith('/')) {
           res.writeHead(302, {'Location': pathname + '/'});
@@ -53,7 +53,7 @@ class Server {
           return;
         }
 
-        let fileList = fs.readdirSync(fullPath).filter(f => f.endsWith('.md'));
+        const fileList = fs.readdirSync(fullPath).filter(f => f.endsWith('.md'));
         res.setHeader("Content-Type", "text/html");
         res.end(fileList.map(f => `<a href='${f}'>${f}</a>`).join(' '));
       } else {

@@ -1,11 +1,9 @@
-'use strict';
-
-const assert = require('assert');
-const fs = require('fs');
-const helper = require('./lib/helper');
-const http = require('http');
-const MarkdownSocket = require('../src/markdown-socket');
-const WebSocket = require('websocket').w3cwebsocket;
+import assert from 'assert';
+import fs from 'fs';
+import helper from './lib/helper';
+import http from 'http';
+import MarkdownSocket from '../src/markdown-socket';
+import { w3cwebsocket as WebSocket } from 'websocket';
 
 describe('MarkdownSocket', () => {
   let server;
@@ -28,7 +26,7 @@ describe('MarkdownSocket', () => {
     server.close(done);
   });
 
-  it('handles a websocket connection', (done) => {
+  it('handles a websocket connection', done => {
     let client = new WebSocket('ws://localhost:1234/test.md');
 
     client.onopen = () => {
@@ -36,7 +34,7 @@ describe('MarkdownSocket', () => {
     };
   });
 
-  it('cannot handle a non markdown connection', (done) => {
+  it('cannot handle a non markdown connection', done => {
     let client = new WebSocket('ws://localhost:1234');
 
     client.onerror = () => {
@@ -44,7 +42,7 @@ describe('MarkdownSocket', () => {
     };
   });
 
-  it('opens a Markdown file and sends the parsed HTML', (done) => {
+  it('opens a Markdown file and sends the parsed HTML', done => {
     let client = new WebSocket('ws://localhost:1234/test.md');
 
     client.onmessage = message => {
@@ -53,7 +51,7 @@ describe('MarkdownSocket', () => {
     };
   });
 
-  it('sends parsed HTML data again when the file is updated', (done) => {
+  it('sends parsed HTML data again when the file is updated', done => {
     const callback = err => { if (err) { done(err); } };
 
     let called = 0;
@@ -77,7 +75,7 @@ describe('MarkdownSocket', () => {
     };
   });
 
-  it('ignores when there is no file for the path', (done) => {
+  it('ignores when there is no file for the path', done => {
     let client = new WebSocket('ws://localhost:1234/no-file.md');
     client.onmessage = message => {
       assert.equal(message.data, 'Not found');

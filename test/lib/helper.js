@@ -1,8 +1,6 @@
-'use strict';
-
-const fs = require('fs');
-const path = require('path');
-const rimraf = require('rimraf');
+import fs from 'fs';
+import path from 'path';
+import rimraf from 'rimraf';
 
 const root = path.join(__dirname, '../temp');
 
@@ -38,8 +36,8 @@ const helper = {
     rimraf.sync(path.join(root, '*'));
   },
   previewRegExp(pathname) {
-    let basename = path.basename(pathname);
-    let regexStr = `^<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${basename}<\/title><style>(.|\n)*<\/style><\/head><body><div class="markdown-body" id="app"><\/div><script>(.|\n)*<\/script><\/body><\/html>$`;
+    const basename = path.basename(pathname);
+    const regexStr = `^<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${basename}<\/title><style>(.|\n)*<\/style><\/head><body><div class="markdown-body" id="app"><\/div><script>(.|\n)*<\/script><\/body><\/html>$`;
     return new RegExp(regexStr);
   }
 };
@@ -47,4 +45,4 @@ const helper = {
 helper.createRootDirectory();
 helper.clean();
 
-module.exports = helper;
+export default helper;
