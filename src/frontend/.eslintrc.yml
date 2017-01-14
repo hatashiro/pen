@@ -1,0 +1,7 @@
+parserOptions:
+  sourceType: module
+extends:
+  - "eslint:recommended"
+  - "plugin:react/recommended"
+env:
+  browser: true
