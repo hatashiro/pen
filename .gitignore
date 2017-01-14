@@ -30,4 +30,4 @@ node_modules
 /test/temp
 
 # Built files
-/index.html
+/dist

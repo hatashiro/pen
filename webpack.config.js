@@ -37,7 +37,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src/frontend'),
   output: {
     filename: 'build.js',
-    path: './'
+    path: 'dist'
   },
   module: {
     loaders: [

@@ -6,3 +6,7 @@ node_modules
 /.travis.yml
 /test/temp
 /resource
+
+# Built JS and CSS files
+/dist/build.js
+/dist/build.css

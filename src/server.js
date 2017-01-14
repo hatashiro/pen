@@ -37,7 +37,7 @@ class Server {
 
   handleAsMarkdown(res) {
     res.setHeader("Content-Type", "text/html");
-    const indexHTMLPath = path.join(__dirname, '../index.html');
+    const indexHTMLPath = path.join(__dirname, '../dist/index.html');
     fs.createReadStream(indexHTMLPath).pipe(res);
   }
 
