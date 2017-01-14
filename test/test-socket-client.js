@@ -3,7 +3,7 @@ import fs from 'fs';
 import helper from './lib/helper';
 import http from 'http';
 import MarkdownSocket from '../src/markdown-socket';
-import SocketClient from '../src/template/script/socket-client';
+import SocketClient from '../src/frontend/socket-client';
 
 describe('SocketClient', () => {
   let server;
