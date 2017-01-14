@@ -11,11 +11,11 @@ describe('built HTML', () => {
 
   it('contains a style tag', () => {
     const html = fs.readFileSync(indexHTMLPath);
-    assert.ok(html.includes('<style'));
+    assert.ok(/<style.+>/.test(html));
   });
 
   it('contains a script tag', () => {
     const html = fs.readFileSync(indexHTMLPath);
-    assert.ok(html.includes('<script'));
+    assert.ok(/<script.+>/.test(html));
   });
 });

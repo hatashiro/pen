@@ -97,8 +97,8 @@ describe('Server', () => {
 
       assert.equal(res.statusCode, 200);
       assert.equal(res.headers['content-type'], 'text/html');
-      assert.ok(body.includes('<style'));
-      assert.ok(body.includes('<script'));
+      assert.ok(/<style.+>/.test(body));
+      assert.ok(/<script.+>/.test(body));
       done();
     });
   });
