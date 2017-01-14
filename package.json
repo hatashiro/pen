@@ -34,6 +34,8 @@
     "eslint-plugin-react": "^6.9.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "github-markdown-css": "^2.4.1",
+    "html-webpack-inline-source-plugin": "^0.0.6",
+    "html-webpack-plugin": "^2.26.0",
     "jsdom": "^9.4.2",
     "json-loader": "^0.5.4",
     "mocha": "^3.0.2",

@@ -1,14 +1,21 @@
 'use strict';
-const path = require('path');
-const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const failPlugin = require('webpack-fail-plugin');
+const HTMLInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const HTMLPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
 
 
 // Always enabled plugins
 let plugins = [
   // Extract CSS files to the 'bundle.css'.
   new ExtractTextPlugin('build.css'),
+  new HTMLPlugin({
+    title: 'Pen',
+    inlineSource: '.(js|css)$'
+  }),
+  new HTMLInlineSourcePlugin(),
   // This plugin should be always required. See https://github.com/webpack/webpack/issues/708
   failPlugin,
 ];
@@ -27,10 +34,10 @@ if (process.env.NODE_ENV === 'production') {
 // Configs
 module.exports = {
   entry: './main.js',
-  context: path.resolve(__dirname, 'src/template/script'),
+  context: path.resolve(__dirname, 'src/frontend'),
   output: {
     filename: 'build.js',
-    path: `${__dirname}/src/template`
+    path: './'
   },
   module: {
     loaders: [
