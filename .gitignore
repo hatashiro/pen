@@ -30,5 +30,4 @@ node_modules
 /test/temp
 
 # Built files
-/src/template/build.js
-/src/template/build.css
+/index.html
