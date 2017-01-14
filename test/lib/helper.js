@@ -34,11 +34,6 @@ const helper = {
   },
   clean() {
     rimraf.sync(path.join(root, '*'));
-  },
-  previewRegExp(pathname) {
-    const basename = path.basename(pathname);
-    const regexStr = `^<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${basename}<\/title><style>(.|\n)*<\/style><\/head><body><div class="markdown-body" id="app"><\/div><script>(.|\n)*<\/script><\/body><\/html>$`;
-    return new RegExp(regexStr);
   }
 };
 

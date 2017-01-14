@@ -3,7 +3,6 @@
 const fs = require('fs');
 const http = require('http');
 const path = require('path');
-const preview = require('./preview');
 const urllib = require('url');
 const MarkdownSocket = require('./markdown-socket');
 
@@ -30,15 +29,16 @@ class Server {
     const extname = path.extname(url.pathname);
 
     if (extname === '.md' || extname === '.markdown') {
-      this.handleAsMarkdown(url.pathname, res);
+      this.handleAsMarkdown(res);
     } else {
       this.handleAsStatic(url.pathname, res);
     }
   }
 
-  handleAsMarkdown(pathname, res) {
+  handleAsMarkdown(res) {
     res.setHeader("Content-Type", "text/html");
-    res.end(preview(pathname));
+    const indexHTMLPath = path.join(__dirname, '../index.html');
+    fs.createReadStream(indexHTMLPath).pipe(res);
   }
 
   handleAsStatic(pathname, res) {
