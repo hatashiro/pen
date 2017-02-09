@@ -7,7 +7,7 @@ describe('Watcher', () => {
   let watcher;
 
   beforeEach(() => {
-    helper.createFile('watcher-temp', 'hello');
+    helper.createFile('test테스트テスト.txt', 'hello');
   });
 
   afterEach(() => {
@@ -16,7 +16,7 @@ describe('Watcher', () => {
   });
 
   it('reads a file', done => {
-    watcher = new Watcher(helper.path('watcher-temp'));
+    watcher = new Watcher(helper.path('test테스트テスト.txt'));
     watcher
       .onData(data => {
         assert.equal(data.toString(), 'hello');
@@ -41,17 +41,17 @@ describe('Watcher', () => {
     const callback = err => { if (err) { done(err); } };
 
     let called = 0;
-    watcher = new Watcher(helper.path('watcher-temp'));
+    watcher = new Watcher(helper.path('test테스트テスト.txt'));
     watcher
       .onData(data => {
         switch (called) {
         case 0:
           assert.equal(data.toString(), 'hello');
-          fs.writeFile(helper.path('watcher-temp'), 'world', callback);
+          fs.writeFile(helper.path('test테스트テスト.txt'), 'world', callback);
           break;
         case 1:
           assert.equal(data.toString(), 'world');
-          fs.writeFile(helper.path('watcher-temp'), 'pen!', callback);
+          fs.writeFile(helper.path('test테스트テスト.txt'), 'pen!', callback);
           break;
         case 2:
           assert.equal(data.toString(), 'pen!');
