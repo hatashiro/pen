@@ -31,7 +31,8 @@ class MarkdownSocket {
   }
 
   onConnect(connection) {
-    const watcher = new MarkdownWatcher(path.join(this.rootPath, this.pathname));
+    const decodedPath = decodeURIComponent(this.pathname);
+    const watcher = new MarkdownWatcher(path.join(this.rootPath, decodedPath));
     watcher.onData(data => connection.send(data));
     watcher.onError(err => {
       if (err.code === 'ENOENT') {
