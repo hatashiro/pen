@@ -1,5 +1,6 @@
 // Non-js dependencies
 import 'github-markdown-css/github-markdown.css';
+import 'highlight.js/styles/foundation.css';
 import './style.css';
 
 import React from 'react';
