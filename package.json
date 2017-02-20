@@ -50,10 +50,12 @@
     "webpack-fail-plugin": "^1.0.5"
   },
   "dependencies": {
+    "highlight.js": "^9.9.0",
     "markdown-it": "^8.2.2",
     "markdown-it-anchor": "^2.5.0",
     "markdown-it-checkbox": "^1.1.0",
     "markdown-it-emoji": "^1.2.0",
+    "markdown-it-highlightjs": "^2.0.0",
     "opn": "^4.0.2",
     "websocket": "^1.0.23",
     "yargs": "^6.6.0"
