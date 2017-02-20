@@ -64,11 +64,11 @@ describe('HTMLRenderer', () => {
           fs.writeFile(helper.path('md-root/test.md'), '```js\nvar a=10;\n```', callback);
           break;
         case 1:
-          assert.equal(html, '<pre><code class="language-js"><!-- react-text: 7 -->var a=10;\n<!-- /react-text --></code></pre><!-- react-text: 4 -->\n<!-- /react-text -->');
+          assert.equal(html, '<pre><code class="hljs language-js"><span class="hljs-keyword"><!-- react-text: 8 -->var<!-- /react-text --></span><!-- react-text: 9 --> a=<!-- /react-text --><span class="hljs-number"><!-- react-text: 11 -->10<!-- /react-text --></span><!-- react-text: 12 -->;\n<!-- /react-text --></code></pre><!-- react-text: 4 -->\n<!-- /react-text -->');
           fs.writeFile(helper.path('md-root/test.md'), '* nested\n  * nnested\n    * nnnested', callback);
           break;
         case 2:
-          assert.equal(html, '<ul><!-- react-text: 9 -->\n<!-- /react-text --><li><!-- react-text: 11 -->nested\n<!-- /react-text --><ul><!-- react-text: 13 -->\n<!-- /react-text --><li><!-- react-text: 15 -->nnested\n<!-- /react-text --><ul><!-- react-text: 17 -->\n<!-- /react-text --><li><!-- react-text: 19 -->nnnested<!-- /react-text --></li><!-- react-text: 20 -->\n<!-- /react-text --></ul><!-- react-text: 21 -->\n<!-- /react-text --></li><!-- react-text: 22 -->\n<!-- /react-text --></ul><!-- react-text: 23 -->\n<!-- /react-text --></li><!-- react-text: 24 -->\n<!-- /react-text --></ul><!-- react-text: 4 -->\n<!-- /react-text -->');
+          assert.equal(html, '<ul><!-- react-text: 14 -->\n<!-- /react-text --><li><!-- react-text: 16 -->nested\n<!-- /react-text --><ul><!-- react-text: 18 -->\n<!-- /react-text --><li><!-- react-text: 20 -->nnested\n<!-- /react-text --><ul><!-- react-text: 22 -->\n<!-- /react-text --><li><!-- react-text: 24 -->nnnested<!-- /react-text --></li><!-- react-text: 25 -->\n<!-- /react-text --></ul><!-- react-text: 26 -->\n<!-- /react-text --></li><!-- react-text: 27 -->\n<!-- /react-text --></ul><!-- react-text: 28 -->\n<!-- /react-text --></li><!-- react-text: 29 -->\n<!-- /react-text --></ul><!-- react-text: 4 -->\n<!-- /react-text -->');
           done();
           break;
         }

@@ -38,7 +38,7 @@ describe('MarkdownWatcher', () => {
           fs.writeFile(helper.path('watcher-temp.md'), '```js\nvar a=10;\n```', callback);
           break;
         case 1:
-          assert.equal(data, '<pre><code class="language-js">var a=10;\n</code></pre>\n');
+          assert.equal(data, '<pre><code class="hljs language-js"><span class="hljs-keyword">var</span> a=<span class="hljs-number">10</span>;\n</code></pre>\n');
           fs.writeFile(helper.path('watcher-temp.md'), '* nested\n  * nnested\n    * nnnested', callback);
           break;
         case 2:

@@ -50,7 +50,7 @@ describe('SocketClient', () => {
         fs.writeFile(helper.path('md-root/test.md'), '```js\nvar a=10;\n```', callback);
         break;
       case 1:
-        assert.equal(html, '<pre><code class="language-js">var a=10;\n</code></pre>\n');
+        assert.equal(html, '<pre><code class="hljs language-js"><span class="hljs-keyword">var</span> a=<span class="hljs-number">10</span>;\n</code></pre>\n');
         fs.writeFile(helper.path('md-root/test.md'), '* nested\n  * nnested\n    * nnnested', callback);
         break;
       case 2:
