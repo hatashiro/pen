@@ -40,16 +40,16 @@ on earlier versions.
 
 ## Install
 
-Using [Yarn](https://yarnpkg.com):
-
-```
-yarn global add @noraesae/pen
-```
-
 Using [npm](http://npmjs.com):
 
 ```
-npm install -g @noraesae/pen
+npm i -g @noraesae/pen
+```
+
+You can try using `pen` with `npx`:
+
+```
+npx -p @noraesae/pen pen
 ```
 
 ## Usage
@@ -80,25 +80,25 @@ git clone git@github.com:your_username/pen.git
 cd pen
 
 # Install dependencies
-yarn
+npm i
 
 # Lint, build, and test pen codes at once
-yarn test
+npm test
 ```
 
 To build frontend scripts:
 ```
-yarn build
+npm run build
 ```
 
 To lint with [ESLint](http://eslint.org):
 ```
-yarn lint
+npm run lint
 ```
 
 To test with [Mocha](http://mochajs.org)
 ```
-yarn mocha
+npm run mocha
 ```
 
 ## License

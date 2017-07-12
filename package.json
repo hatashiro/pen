@@ -4,11 +4,11 @@
   "description": "A better Markdown previewer",
   "main": "index.js",
   "scripts": {
-    "test": "yarn lint && yarn build && yarn mocha",
+    "test": "npm run lint && npm run build && npm run mocha",
     "lint": "eslint .",
     "build": "NODE_ENV=production webpack --optimize-occurrence-order",
     "mocha": "mocha --require babel-register --require test/setup.js test/**/test-*",
-    "release": "yarn build && npm publish --access=public"
+    "release": "npm run build && npm publish --access=public"
   },
   "repository": {
     "type": "git",
