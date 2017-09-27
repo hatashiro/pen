@@ -2,12 +2,12 @@
 
 > We need a better Markdown previewer.
 
-[![travis](https://travis-ci.org/noraesae/pen.svg)](https://travis-ci.org/noraesae/pen)
+[![travis](https://travis-ci.org/utatti/pen.svg)](https://travis-ci.org/utatti/pen)
 
 `pen` is a Markdown previewer written in JavaScript, aiming to *just work*.
 
 There are literally tons of Markdown previewers out there. I love some of them,
-I even made [one](https://github.com/noraesae/orange-cat) of them. Nevertheless,
+I even made [one](https://github.com/utatti/orange-cat) of them. Nevertheless,
 we always need a better one, don't we?
 
 Using `pen` is super simple, we don't need to install any special editor or
