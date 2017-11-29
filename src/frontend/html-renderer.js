@@ -8,15 +8,18 @@ class HTMLRenderer extends React.Component {
     super(props);
     this.state = { html: '' };
   }
+
   componentDidMount() {
     this.socketClient = new SocketClient(this.props.location);
     this.socketClient.onData(html => this.setState({ html }));
   }
+
   componentDidUpdate() {
     if (this.props.onUpdate) {
       this.props.onUpdate();
     }
   }
+
   render() {
     return React.createElement('div', null, renderHTML(this.state.html));
   }
