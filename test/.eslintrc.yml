@@ -3,6 +3,8 @@ parserOptions:
 extends:
   - "eslint:recommended"
   - "plugin:react/recommended"
+rules:
+  no-console: 1
 
 env:
   mocha: true
