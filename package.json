@@ -57,6 +57,7 @@
     "markdown-it-emoji": "^1.2.0",
     "markdown-it-highlightjs": "^2.0.0",
     "opn": "^4.0.2",
+    "simple-pandoc": "^0.1.0",
     "websocket": "^1.0.23",
     "yargs": "^6.6.0"
   },
