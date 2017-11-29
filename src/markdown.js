@@ -1,6 +1,8 @@
 'use strict';
 
+const argv = require('./argv');
 const mdit = require('markdown-it');
+const pandoc = require('simple-pandoc');
 
 const singleton = (creator) => {
   let obj;
@@ -15,4 +17,9 @@ const md = singleton(() =>
     .use(require('markdown-it-anchor'))
 );
 
-module.exports = markdown => md().render(markdown);
+const pd = singleton(() =>
+  pandoc(argv.pandoc, 'html')
+);
+
+module.exports = markdown =>
+  argv.pandoc ? pd()(markdown) : Promise.resolve(md().render(markdown));

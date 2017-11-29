@@ -5,9 +5,7 @@ const Watcher = require('./watcher');
 
 class MarkdownWatcher extends Watcher {
   onData(callback) {
-    this._dataCallback = data => {
-      callback(convert(data.toString()));
-    };
+    this._dataCallback = data => convert(data.toString()).then(callback);
     return this;
   }
 }
