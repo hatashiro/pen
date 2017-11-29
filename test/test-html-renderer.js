@@ -39,7 +39,7 @@ describe('HTMLRenderer', () => {
         pathname: '/test.md'
       },
       onUpdate() {
-        assert.equal(getRenderedHTML(rendered), '<h1 id="hello"><!-- react-text: 3 -->hello<!-- /react-text --></h1><!-- react-text: 4 -->\n<!-- /react-text -->');
+        assert.equal(getRenderedHTML(rendered), '<h1 id="hello">hello</h1>\n');
         done();
       }
     });
@@ -60,15 +60,15 @@ describe('HTMLRenderer', () => {
         let html = getRenderedHTML(rendered);
         switch (called) {
         case 0:
-          assert.equal(html, '<h1 id="hello"><!-- react-text: 3 -->hello<!-- /react-text --></h1><!-- react-text: 4 -->\n<!-- /react-text -->');
+          assert.equal(html, '<h1 id="hello">hello</h1>\n');
           fs.writeFile(helper.path('md-root/test.md'), '```js\nvar a=10;\n```', callback);
           break;
         case 1:
-          assert.equal(html, '<pre><code class="hljs language-js"><span class="hljs-keyword"><!-- react-text: 8 -->var<!-- /react-text --></span><!-- react-text: 9 --> a=<!-- /react-text --><span class="hljs-number"><!-- react-text: 11 -->10<!-- /react-text --></span><!-- react-text: 12 -->;\n<!-- /react-text --></code></pre><!-- react-text: 4 -->\n<!-- /react-text -->');
+          assert.equal(html, '<pre><code class="hljs language-js"><span class="hljs-keyword">var</span> a=<span class="hljs-number">10</span>;\n</code></pre>\n');
           fs.writeFile(helper.path('md-root/test.md'), '* nested\n  * nnested\n    * nnnested', callback);
           break;
         case 2:
-          assert.equal(html, '<ul><!-- react-text: 14 -->\n<!-- /react-text --><li><!-- react-text: 16 -->nested\n<!-- /react-text --><ul><!-- react-text: 18 -->\n<!-- /react-text --><li><!-- react-text: 20 -->nnested\n<!-- /react-text --><ul><!-- react-text: 22 -->\n<!-- /react-text --><li><!-- react-text: 24 -->nnnested<!-- /react-text --></li><!-- react-text: 25 -->\n<!-- /react-text --></ul><!-- react-text: 26 -->\n<!-- /react-text --></li><!-- react-text: 27 -->\n<!-- /react-text --></ul><!-- react-text: 28 -->\n<!-- /react-text --></li><!-- react-text: 29 -->\n<!-- /react-text --></ul><!-- react-text: 4 -->\n<!-- /react-text -->');
+          assert.equal(html, '<ul>\n<li>nested\n<ul>\n<li>nnested\n<ul>\n<li>nnnested</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n');
           done();
           break;
         }
