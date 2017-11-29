@@ -42,13 +42,13 @@ on earlier versions.
 
 Using [npm](http://npmjs.com):
 
-```
+```shell
 npm i -g @noraesae/pen
 ```
 
 You can try using `pen` with `npx`:
 
-```
+```shell
 npx -p @noraesae/pen pen
 ```
 
@@ -56,7 +56,7 @@ npx -p @noraesae/pen pen
 
 To use `pen`, simply run the `pen` command.
 
-```
+```shell
 pen README.md
 ```
 
@@ -70,12 +70,22 @@ To stop the server, enter `^C`.
 For the further details of the `pen` command, please enter `pen -h` or `pen
 --help`.
 
+### Pandoc
+
+Pen uses [markdown-it](https://github.com/markdown-it/markdown-it) as Markdown
+parser by default, but it also supports Pandoc. Please provide [a proper Pandoc
+format](http://pandoc.org/MANUAL.html#general-options) for the value.
+
+```shell
+pen --pandoc gfm README.md
+```
+
 ## Contribution
 
 I welcome every contribution on `pen`. You may start from forking and cloning
 this repo.
 
-```bash
+```shell
 git clone git@github.com:your_username/pen.git
 cd pen
 
@@ -87,17 +97,20 @@ npm test
 ```
 
 To build frontend scripts:
-```
+
+```shell
 npm run build
 ```
 
 To lint with [ESLint](http://eslint.org):
-```
+
+```shell
 npm run lint
 ```
 
 To test with [Mocha](http://mochajs.org)
-```
+
+```shell
 npm run mocha
 ```
 
