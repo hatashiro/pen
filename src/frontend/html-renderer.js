@@ -1,6 +1,7 @@
 import React from 'react';
 import renderHTML from 'react-render-html';
 import SocketClient from './socket-client';
+import PropTypes from 'prop-types';
 
 class HTMLRenderer extends React.Component {
   constructor(props) {
@@ -22,11 +23,11 @@ class HTMLRenderer extends React.Component {
 }
 
 HTMLRenderer.propTypes = {
-  location: React.PropTypes.shape({
-    host: React.PropTypes.string.isRequired,
-    pathname: React.PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    host: PropTypes.string.isRequired,
+    pathname: PropTypes.string.isRequired,
   }).isRequired,
-  onUpdate: React.PropTypes.func,
+  onUpdate: PropTypes.func,
 };
 
 export default HTMLRenderer;

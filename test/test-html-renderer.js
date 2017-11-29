@@ -5,7 +5,7 @@ import HTMLRenderer from '../src/frontend/html-renderer';
 import http from 'http';
 import MarkdownSocket from '../src/markdown-socket';
 import React from 'react';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 
 function getRenderedHTML(rendered) {
   const div = ReactTestUtils.findRenderedDOMComponentWithTag(rendered, 'div');

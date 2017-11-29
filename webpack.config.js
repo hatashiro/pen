@@ -8,7 +8,7 @@ const webpack = require('webpack');
 
 
 // Always enabled plugins
-let plugins = [
+const plugins = [
   // Extract CSS files to the 'bundle.css'.
   new ExtractTextPlugin('build.css'),
   new HTMLPlugin({
@@ -22,12 +22,10 @@ let plugins = [
 
 // Production only plugins
 if (process.env.NODE_ENV === 'production') {
-  plugins = plugins.concat([
+  plugins.push(
     // Pass the 'NODE_ENV=production' environment variable to the child processes.
-    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } }),
-    // Minimize the output
-    new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }),
-  ]);
+    new webpack.DefinePlugin({ 'process.env': { NODE_ENV: JSON.stringify('production') } })
+  );
 }
 
 
@@ -37,16 +35,25 @@ module.exports = {
   context: path.resolve(__dirname, 'src/frontend'),
   output: {
     filename: 'build.js',
-    path: 'dist'
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     loaders: [
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
-      { test: /\.json$/, loader: 'json' },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader',
+        })
+      },
+      {
+        test: /\.json$/,
+        use: 'json-loader',
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        use: 'babel-loader',
       }
     ]
   },
