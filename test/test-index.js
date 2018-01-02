@@ -5,7 +5,7 @@ import request from "request";
 import { spawn } from "child_process";
 
 describe("index", () => {
-  let proc;
+  let proc = null;
   const cwd = process.cwd();
   const indexScriptPath = path.join(cwd, "index.js");
 
@@ -16,8 +16,15 @@ describe("index", () => {
   });
 
   afterEach(done => {
-    proc.on("close", done);
-    proc.kill();
+    if (proc !== null) {
+      proc.on("close", done);
+      proc.kill();
+    } else {
+      setTimeout(done);
+    }
+
+    proc = null;
+
     helper.clean();
     process.chdir(cwd);
   });
@@ -51,6 +58,55 @@ describe("index", () => {
 
         assert.equal(res.statusCode, 200);
         assert.equal(body, "hello");
+        done();
+      });
+    });
+  });
+
+  it("runs mult server with default port", done => {
+    let procs = [];
+
+    // cs -> create server
+    let cs = () => {
+      return new Promise(resolve => {
+        let proc = spawn("node", [indexScriptPath]);
+        procs.push(proc);
+        proc.stdout.on("data", data => {
+          let port = data.toString().match(/listening (\d+)/);
+
+          if (port === null) {
+            resolve("get listening port fail ...");
+            return;
+          }
+
+          port = port[1];
+
+          request.get(`http://localhost:${port}/test1.txt`, err => {
+            if (err) {
+              resolve(err);
+              return;
+            }
+
+            resolve("success");
+          });
+        });
+      });
+    };
+
+    // cp -> close process
+    let cp = proc => {
+      return new Promise(resolve => {
+        proc.on("close", resolve);
+        proc.kill();
+      });
+    };
+
+    Promise.all([cs(), cs(), cs(), cs()]).then(results => {
+      results.forEach(result => {
+        assert.equal(result, "success");
+      });
+
+      Promise.all(procs.map(cp)).then(() => {
         done();
       });
     });

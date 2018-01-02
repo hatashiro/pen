@@ -130,4 +130,12 @@ describe("Server", () => {
       done();
     };
   });
+
+  it("getPort() return value should same with TestPort", done => {
+    server = new Server(helper.path("server-root"));
+    server.listen(TestPort, () => {
+      assert.equal(server.getPort(), TestPort);
+      done();
+    });
+  });
 });
