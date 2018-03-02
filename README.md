@@ -28,10 +28,9 @@ Here is a short demo showing how awesome `pen` is.
 ![demo](https://cloud.githubusercontent.com/assets/1013641/9977359/21b79f66-5f3f-11e5-860a-cf19b2287009.gif)
 
 The following demo shows `pen` incrementally updates only modified part using
-[React](https://facebook.github.io/react/) and
-its [Virtual DOM](https://facebook.github.io/react/docs/glossary.html).
+[React](https://facebook.github.io/react/) and its [Reconciliation](https://reactjs.org/docs/reconciliation.html).
 
-![virtual-dom](https://cloud.githubusercontent.com/assets/1013641/11914823/896591ba-a6cd-11e5-94ee-05e3ab50413b.gif)
+![incremental update](https://cloud.githubusercontent.com/assets/1013641/11914823/896591ba-a6cd-11e5-94ee-05e3ab50413b.gif)
 
 ## Requirement
 
