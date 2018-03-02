@@ -43,13 +43,13 @@ on earlier versions.
 Using [npm](http://npmjs.com):
 
 ```shell
-npm i -g @noraesae/pen
+npm i -g pen
 ```
 
 You can try using `pen` with `npx`:
 
 ```shell
-npx -p @noraesae/pen pen
+npx pen
 ```
 
 ## Usage

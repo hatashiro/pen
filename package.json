@@ -1,5 +1,5 @@
 {
-  "name": "@noraesae/pen",
+  "name": "pen",
   "version": "2.0.0",
   "description": "A better Markdown previewer",
   "main": "index.js",
