@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const MarkdownWatcher = require('./markdown-watcher');
-const path = require('path');
-const WebSocketServer = require('websocket').server;
+const MarkdownWatcher = require("./markdown-watcher");
+const path = require("path");
+const WebSocketServer = require("websocket").server;
 
 class MarkdownSocket {
   constructor(rootPath) {
@@ -13,15 +13,15 @@ class MarkdownSocket {
 
   listenTo(httpServer) {
     this._server = new WebSocketServer();
-    this._server.mount({httpServer: httpServer});
-    this._server.on('request', this.onRequest.bind(this));
-    this._server.on('connect', this.onConnect.bind(this));
+    this._server.mount({ httpServer: httpServer });
+    this._server.on("request", this.onRequest.bind(this));
+    this._server.on("connect", this.onConnect.bind(this));
   }
 
   onRequest(request) {
     const extname = path.extname(request.resource);
 
-    if (extname !== '.md' && extname !== '.markdown') {
+    if (extname !== ".md" && extname !== ".markdown") {
       request.reject();
       return;
     }
@@ -35,15 +35,15 @@ class MarkdownSocket {
     const watcher = new MarkdownWatcher(path.join(this.rootPath, decodedPath));
     watcher.onData(data => connection.send(data));
     watcher.onError(err => {
-      if (err.code === 'ENOENT') {
+      if (err.code === "ENOENT") {
         // if there is no file, ignore and send 'no file'
-        connection.send('Not found');
+        connection.send("Not found");
         return;
       }
       throw err;
     });
 
-    connection.on('close', () => {
+    connection.on("close", () => {
       watcher.stop();
     });
   }

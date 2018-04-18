@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const convert = require('./markdown');
-const Watcher = require('./watcher');
+const convert = require("./markdown");
+const Watcher = require("./watcher");
 
 class MarkdownWatcher extends Watcher {
   onData(callback) {
