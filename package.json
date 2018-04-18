@@ -8,7 +8,7 @@
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "lintfix": "eslint --fix --ext .js --ignore-path .gitignore .",
     "build": "NODE_ENV=production webpack -p",
-    "mocha": "mocha --require babel-register --require test/setup.js test/**/test-*",
+    "mocha": "mocha -r babel-core/register -r babel-polyfill -r test/setup.js test/**/test-*",
     "release": "npm run build && npm publish --access=public"
   },
   "repository": {
@@ -29,8 +29,8 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0",
     "css-loader": "^0.28.7",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",

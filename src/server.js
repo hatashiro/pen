@@ -6,6 +6,11 @@ const path = require("path");
 const urllib = require("url");
 const MarkdownSocket = require("./markdown-socket");
 
+function isMarkdown(path) {
+  const lowerCasedPath = path.toLowerCase();
+  return lowerCasedPath.endsWith(".md") || lowerCasedPath.endsWith(".markdown");
+}
+
 class Server {
   constructor(rootPath) {
     this.rootPath = rootPath;
@@ -26,9 +31,8 @@ class Server {
 
   handler(req, res) {
     const url = urllib.parse(req.url);
-    const extname = path.extname(url.pathname);
 
-    if (extname === ".md" || extname === ".markdown") {
+    if (isMarkdown(url.pathname)) {
       this.handleAsMarkdown(res);
     } else {
       this.handleAsStatic(url.pathname, res);
@@ -53,9 +57,7 @@ class Server {
           return;
         }
 
-        const fileList = fs
-          .readdirSync(fullPath)
-          .filter(f => f.endsWith(".md"));
+        const fileList = fs.readdirSync(fullPath).filter(isMarkdown);
         res.setHeader("Content-Type", "text/html");
         res.end(fileList.map(f => `<a href='${f}'>${f}</a>`).join(" "));
       } else {
