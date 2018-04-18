@@ -1,4 +1,4 @@
-import { w3cwebsocket as WebSocket } from 'websocket';
+import { w3cwebsocket as WebSocket } from "websocket";
 
 export default class SocketClient {
   constructor(location) {

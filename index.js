@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const open = require('opn');
-const Server = require('./src/server');
-const argv = require('./src/argv');
+const open = require("opn");
+const Server = require("./src/server");
+const argv = require("./src/argv");
 
 let server = new Server(process.cwd());
 server.listen(argv.port, () => {

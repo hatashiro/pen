@@ -1,13 +1,12 @@
-import fs from 'fs';
-import path from 'path';
-import rimraf from 'rimraf';
+import fs from "fs";
+import path from "path";
+import rimraf from "rimraf";
 
-const root = path.join(__dirname, '../temp');
+const root = path.join(__dirname, "../temp");
 
 function filePath(p) {
   return path.join(root, p);
 }
-
 
 const helper = {
   createFile(p, initialContent) {
@@ -17,7 +16,7 @@ const helper = {
     try {
       fs.mkdirSync(filePath(p));
     } catch (e) {
-      if (e.code !== 'EEXIST') {
+      if (e.code !== "EEXIST") {
         throw e;
       }
     }
@@ -33,7 +32,7 @@ const helper = {
     }
   },
   clean() {
-    rimraf.sync(path.join(root, '*'));
+    rimraf.sync(path.join(root, "*"));
   }
 };
 

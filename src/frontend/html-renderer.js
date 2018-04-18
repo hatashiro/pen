@@ -1,12 +1,12 @@
-import React from 'react';
-import renderHTML from 'react-render-html';
-import SocketClient from './socket-client';
-import PropTypes from 'prop-types';
+import React from "react";
+import renderHTML from "react-render-html";
+import SocketClient from "./socket-client";
+import PropTypes from "prop-types";
 
 class HTMLRenderer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { html: '' };
+    this.state = { html: "" };
   }
 
   componentDidMount() {
@@ -21,16 +21,16 @@ class HTMLRenderer extends React.Component {
   }
 
   render() {
-    return React.createElement('div', null, renderHTML(this.state.html));
+    return React.createElement("div", null, renderHTML(this.state.html));
   }
 }
 
 HTMLRenderer.propTypes = {
   location: PropTypes.shape({
     host: PropTypes.string.isRequired,
-    pathname: PropTypes.string.isRequired,
+    pathname: PropTypes.string.isRequired
   }).isRequired,
-  onUpdate: PropTypes.func,
+  onUpdate: PropTypes.func
 };
 
 export default HTMLRenderer;

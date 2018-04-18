@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const http = require('http');
-const path = require('path');
-const urllib = require('url');
-const MarkdownSocket = require('./markdown-socket');
+const fs = require("fs");
+const http = require("http");
+const path = require("path");
+const urllib = require("url");
+const MarkdownSocket = require("./markdown-socket");
 
 class Server {
   constructor(rootPath) {
@@ -28,7 +28,7 @@ class Server {
     const url = urllib.parse(req.url);
     const extname = path.extname(url.pathname);
 
-    if (extname === '.md' || extname === '.markdown') {
+    if (extname === ".md" || extname === ".markdown") {
       this.handleAsMarkdown(res);
     } else {
       this.handleAsStatic(url.pathname, res);
@@ -37,7 +37,7 @@ class Server {
 
   handleAsMarkdown(res) {
     res.setHeader("Content-Type", "text/html");
-    const indexHTMLPath = path.join(__dirname, '../dist/index.html');
+    const indexHTMLPath = path.join(__dirname, "../dist/index.html");
     fs.createReadStream(indexHTMLPath).pipe(res);
   }
 
@@ -47,23 +47,24 @@ class Server {
     try {
       const stat = fs.statSync(fullPath);
       if (stat.isDirectory()) {
-        if (!pathname.endsWith('/')) {
-          res.writeHead(302, {'Location': pathname + '/'});
+        if (!pathname.endsWith("/")) {
+          res.writeHead(302, { Location: pathname + "/" });
           res.end();
           return;
         }
 
-        const fileList = fs.readdirSync(fullPath).filter(f => f.endsWith('.md'));
+        const fileList = fs
+          .readdirSync(fullPath)
+          .filter(f => f.endsWith(".md"));
         res.setHeader("Content-Type", "text/html");
-        res.end(fileList.map(f => `<a href='${f}'>${f}</a>`).join(' '));
+        res.end(fileList.map(f => `<a href='${f}'>${f}</a>`).join(" "));
       } else {
-        fs.createReadStream(fullPath)
-          .pipe(res);
+        fs.createReadStream(fullPath).pipe(res);
       }
     } catch (err) {
-      if (err.code === 'ENOENT') {
+      if (err.code === "ENOENT") {
         res.statusCode = 404;
-        res.end('Not found');
+        res.end("Not found");
       } else {
         throw err;
       }
