@@ -8,8 +8,7 @@ let server = new Server(process.cwd());
 server.listen(argv.port, () => {
   console.log(`listening ${argv.port} ...`);
 
-  argv._.forEach(file => {
-    open(`http://localhost:${argv.port}/${file}`)
-      .catch(err => {}); // ignore open error
-  });
+  argv._.forEach(file =>
+    open(`http://localhost:${argv.port}/${file}`).catch(() => {})
+  );
 });
