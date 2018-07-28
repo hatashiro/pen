@@ -63,7 +63,7 @@
     "opn": "^4.0.2",
     "prop-types": "^15.6.0",
     "simple-pandoc": "^0.1.0",
-    "websocket": "^1.0.23",
+    "websocket": "^1.0.26",
     "yargs": "^6.6.0"
   },
   "preferGlobal": true,
