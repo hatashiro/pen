@@ -24,6 +24,10 @@ class Server {
     this._server.listen(port, cb);
   }
 
+  getPort() {
+    return this._server.address().port;
+  }
+
   close(cb) {
     this._ws.close();
     this._server.close(cb);
