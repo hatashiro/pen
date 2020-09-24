@@ -1,9 +1,15 @@
 "use strict";
 
+const DEFAULT_BROWSER = "firefox";
 const DEFAULT_PORT = 6060;
 
 module.exports = require("yargs")
   .usage("Usage: $0 [options] [file]")
+  .option("b", {
+    alias: "browser",
+    default: DEFAULT_BROWSER,
+    describe: "Set browser to use"
+  })
   .option("p", {
     alias: "port",
     default: DEFAULT_PORT,

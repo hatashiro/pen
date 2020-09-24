@@ -9,6 +9,7 @@ server.listen(argv.port, () => {
   console.log(`listening ${argv.port} ...`);
 
   argv._.forEach(file =>
-    open(`http://localhost:${argv.port}/${file}`).catch(() => {})
+    open(`http://localhost:${argv.port}/${file}`,
+        {app: `${argv.browser}`}).catch(() => {})
   );
 });
